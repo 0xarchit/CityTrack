@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const cache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-const CACHE_KEY_PREFIX = "urbanlens_cache_";
+const CACHE_KEY_PREFIX = "citytracker_cache_";
 
 // Helper to get full URL (duplicated logic, but safe for synchronous init)
 const getFullUrl = (url: string) => {

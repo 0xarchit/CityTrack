@@ -1,8 +1,8 @@
 "use client";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
-const REQUEST_TIMEOUT_MS = 30000;
-const MAX_RETRIES = 2;
+const REQUEST_TIMEOUT_MS = 35000;
+const MAX_RETRIES = 3;
 
 class ApiError extends Error {
   status: number;

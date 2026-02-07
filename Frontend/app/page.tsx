@@ -187,7 +187,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-8 opacity-75 hover:opacity-100 transition-opacity">
             <div className="w-6 h-6 bg-slate-900 rounded-md flex items-center justify-center text-xs font-bold font-mono text-white">U</div>
-            <span className="text-sm font-bold tracking-wide text-slate-900">URBANLENS SYSTEMS</span>
+            <span className="text-sm font-bold tracking-wide text-slate-900">CityTracker SYSTEMS</span>
           </div>
           <p className="text-slate-500 text-sm">
             © 2026 Dept. of Public Works. Secure. Efficient. Transparent.

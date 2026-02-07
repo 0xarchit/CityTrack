@@ -62,7 +62,7 @@ export default function DashboardSidebar({
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 transition-all duration-300 ease-in-out shadow-urban-lg", // UrbanLens Light Glass
+          "fixed inset-y-0 left-0 z-50 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 transition-all duration-300 ease-in-out shadow-urban-lg",
           "lg:relative lg:translate-x-0 lg:shadow-none",
           mobileOpen ? "translate-x-0" : "-translate-x-full",
           desktopOpen ? "lg:w-72" : "lg:w-0 lg:overflow-hidden lg:border-r-0"

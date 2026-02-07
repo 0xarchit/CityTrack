@@ -19,3 +19,4 @@ User/android/app/release/
 User/android/app/debug/
 
 .vscode
+node_modules/

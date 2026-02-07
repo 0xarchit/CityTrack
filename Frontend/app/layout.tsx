@@ -17,7 +17,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "UrbanLens - City Issue Reporter",
+  title: "CityTracker - City Issue Reporter",
   description: "Smart city issue tracking and resolution dashboard",
 };
 

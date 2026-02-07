@@ -59,7 +59,7 @@ export default function IssuesPage() {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-    }, 500);
+    }, 1500);
     return () => clearTimeout(handler);
   }, [search]);
 
