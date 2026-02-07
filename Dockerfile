@@ -1,7 +1,5 @@
 FROM python:3.11-slim
 
-LABEL org.opencontainers.image.source=https://github.com/0xarchit/citytrack
-
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
@@ -28,3 +26,5 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 7860
 
 CMD ["python", "-m", "uvicorn", "Backend.api:app", "--host", "0.0.0.0", "--port", "7860", "--forwarded-allow-ips", "*"]
+
+LABEL org.opencontainers.image.source=https://github.com/0xarchit/CityTrack
