@@ -51,8 +51,8 @@ class Settings(BaseSettings):
     gemini_api_key: Optional[str] = None
     google_client_secret: Optional[str] = None
     project_id: Optional[str] = None
-    sender_email: str = "noreply@urbanlens.city"
-    admin_email: str = "admin@urbanlens.city"
+    sender_email: str = "noreply@CityTrack.city"
+    admin_email: str = "admin@CityTrack.city"
 
     frontend_url: Optional[str] = None
     
