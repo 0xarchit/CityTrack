@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Mission Control | UrbanLens</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fira Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        urban: {
+                            bg: '#0F172A',
+                            card: '#1E293B',
+                            primary: '#3B82F6',
+                            success: '#10B981',
+                            warning: '#F59E0B',
+                            error: '#EF4444',
+                            text: '#F1F5F9',
+                            muted: '#64748B',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F172A;
+            color: #F1F5F9;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .step-connector {
+            position: absolute;
+            left: 24px;
+            top: 40px;
+            bottom: -24px;
+            width: 2px;
+            background: #334155;
+            z-index: 0;
+        }
+
+        .step-connector.active {
+            background: #3B82F6;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Modal Transition */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 200ms, transform 200ms;
+        }
+
+        .modal-exit {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .modal-exit-active {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 200ms, transform 200ms;
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col overflow-hidden selection:bg-blue-500/30">
+
+    <!-- Header -->
+    <header
+        class="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-900/50 backdrop-blur-md z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <i data-lucide="cpu" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight tracking-tight">UrbanLens <span
+                        class="text-blue-500">Core</span></h1>
+                <p class="text-[10px] text-slate-400 font-mono tracking-wider uppercase">Agent Orchestration Node</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
+                <div id="connection-status" class="w-2 h-2 rounded-full bg-slate-500"></div>
+                <span id="status-text" class="text-xs font-mono text-slate-400">DISCONNECTED</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+
+        <!-- Left Sidebar: Controls & History -->
+        <aside class="w-80 border-r border-slate-800 flex flex-col bg-slate-900/30">
+            <div class="p-6 border-b border-slate-800">
+                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Input Parameters</h2>
+                <form id="issue-form" onsubmit="handleSubmit(event)" class="space-y-4">
+
+                    <!-- Drag & Drop Upload -->
+                    <div class="relative group cursor-pointer" onclick="document.getElementById('file').click()">
+                        <input type="file" id="file" name="images" class="hidden" accept="image/*"
+                            onchange="handleFileSelect(this)">
+                        <div id="drop-zone"
+                            class="h-32 rounded-xl border-2 border-dashed border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-blue-500/50 transition-all flex flex-col items-center justify-center gap-2 p-4 text-center">
+                            <i data-lucide="upload-cloud"
+                                class="w-6 h-6 text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                            <span id="file-label" class="text-xs text-slate-400 font-medium">Upload Evidence</span>
+                        </div>
+                        <!-- Preview Overlay -->
+                        <img id="upload-preview"
+                            class="absolute inset-0 w-full h-full object-cover rounded-xl hidden opacity-50 hover:opacity-100 transition-opacity" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-bold text-slate-500">Description</label>
+                        <textarea name="description" id="desc-input" rows="2"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600"
+                            placeholder="Describe the issue..."></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-slate-500">Lat</label>
+                            <input type="number" step="any" name="latitude" id="lat-input" value="28.6304"
+                                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono focus:border-blue-500 outline-none">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-slate-500">Lng</label>
+                            <input type="number" step="any" name="longitude" id="lng-input" value="77.2177"
+                                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono focus:border-blue-500 outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Hidden fields -->
+                    <input type="hidden" name="platform" value="web-console">
+                    <input type="hidden" name="device_model" value="AdminStation">
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-600/20 text-sm transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="play" class="w-4 h-4 text-white/50"></i> EXECUTE PIPELINE
+                    </button>
+                    <button type="button" id="reset-btn" onclick="resetUI()"
+                        class="hidden w-full bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold py-3 rounded-xl text-sm transition-all">
+                        RESET CONSOLE
+                    </button>
+                    <div id="replay-banner"
+                        class="hidden text-center p-2 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-500 text-xs font-bold uppercase animate-pulse">
+                        Historial Replay Mode
+                    </div>
+                </form>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 flex flex-col">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Recent Runs</h2>
+                    <button onclick="clearHistory()"
+                        class="text-[10px] text-red-400 hover:text-red-300 uppercase font-bold tracking-wider hover:underline"
+                        id="clear-history-btn">Clear All</button>
+                </div>
+                <div id="history-list" class="space-y-2 flex-1">
+                    <!-- Populated by JS -->
+                    <div class="text-center py-8 text-slate-600 text-xs italic">No execution history</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center: Pipeline Visualization -->
+        <section class="flex-1 flex flex-col bg-[#0B1120] relative">
+            <div
+                class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none">
+            </div>
+
+            <div class="flex-1 p-8 overflow-y-auto" id="pipeline-stage">
+
+                <div id="empty-stage" class="h-full flex flex-col items-center justify-center text-slate-600 space-y-4">
+                    <div
+                        class="w-24 h-24 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center animate-pulse-slow">
+                        <i data-lucide="network" class="w-10 h-10 text-slate-500 opacity-50"></i>
+                    </div>
+                    <p class="text-sm font-medium">System Idle. Awaiting Task Injection.</p>
+                </div>
+
+                <div id="active-pipeline" class="hidden max-w-3xl mx-auto space-y-0 relative pb-20">
+                    <!-- Steps Injected Here -->
+                </div>
+
+            </div>
+
+            <!-- Bottom: Log Stream -->
+            <div class="h-48 border-t border-slate-800 bg-slate-900/80 backdrop-blur flex flex-col">
+                <div class="px-4 py-2 border-b border-slate-800 flex justify-between items-center bg-slate-900">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="terminal" class="w-3 h-3 text-emerald-500"></i>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">System Event
+                            Stream</span>
+                    </div>
+                    <span id="log-count" class="text-[10px] text-slate-600 font-mono">0 events</span>
+                </div>
+                <div id="console-logs" class="flex-1 overflow-y-auto p-4 font-mono text-xs text-slate-400 space-y-1">
+                    <!-- Logs -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Inspector Panel -->
+        <aside
+            class="w-96 border-l border-slate-800 bg-slate-900/50 backdrop-blur-sm flex flex-col transition-transform duration-300 transform translate-x-0"
+            id="inspector-panel">
+
+            <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+                <h2 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                    <i data-lucide="scan-eye" class="w-4 h-4 text-blue-500"></i>
+                    Vision Inspector
+                </h2>
+                <span
+                    class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-1 rounded border border-blue-500/20 font-mono">LIVE</span>
+            </div>
+
+            <div class="p-6 space-y-6 flex-1 overflow-y-auto">
+
+                <!-- Vision Comparison -->
+                <div class="space-y-3">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+                        <span>Original Input</span>
+                        <span>AI Analysis</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 h-32">
+                        <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 relative group cursor-zoom-in"
+                            onclick="openZoomModal(document.getElementById('inspector-original').src, 'Original Evidence')">
+                            <img id="inspector-original" class="w-full h-full object-cover opacity-50" />
+                            <div class="absolute inset-0 flex items-center justify-center text-[10px] text-slate-500"
+                                id="inspector-original-placeholder">NO DATA</div>
+                            <div
+                                class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 relative group cursor-zoom-in"
+                            onclick="openZoomModal(document.getElementById('inspector-annotated').src, 'AI Vision Analysis')">
+                            <img id="inspector-annotated" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 flex items-center justify-center text-[10px] text-slate-500"
+                                id="inspector-annotated-placeholder">PENDING</div>
+
+                            <!-- Overlay Badge -->
+                            <div id="vision-badge"
+                                class="hidden absolute bottom-2 right-2 bg-black/70 text-emerald-400 text-[8px] font-bold px-1.5 py-0.5 rounded border border-emerald-500/30">
+                                DETECTED
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step Details -->
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Selected Step Data</h3>
+                    <div class="bg-slate-950 rounded-lg border border-slate-800 p-3 overflow-hidden">
+                        <pre id="json-viewer"
+                            class="text-[10px] text-emerald-400 font-mono whitespace-pre-wrap break-all">Select a pipeline step to inspect output...</pre>
+                    </div>
+                </div>
+
+                <!-- Global State -->
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Metrics</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-[10px] text-slate-500">Latency</div>
+                            <div class="text-sm font-mono font-bold text-slate-200" id="metric-latency">-- ms</div>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-[10px] text-slate-500">Confidence</div>
+                            <div class="text-sm font-mono font-bold text-slate-200" id="metric-confidence">--%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Zoom Modal -->
+    <div id="zoom-modal"
+        class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300"
+        onclick="closeZoomModal()">
+        <div class="relative max-w-7xl max-h-[90vh] p-4 group" onclick="event.stopPropagation()">
+            <button onclick="closeZoomModal()"
+                class="absolute -top-10 right-0 text-white hover:text-blue-400 transition-colors">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <h3 id="modal-title"
+                class="text-slate-400 text-sm font-mono absolute -top-8 left-0 uppercase tracking-wider">Image Preview
+            </h3>
+            <img id="modal-img" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl border border-slate-800" />
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const API_BASE = window.location.origin;
+        let eventSource = null;
+        let logCounter = 0;
+        let startTime = 0;
+
+        // Runtime State Capture
+        let currentRunId = null;
+        let currentRunLogs = [];
+        let currentRunSteps = [];
+        let currentOriginalImage = null; // Base64
+        let currentAnnotatedImage = null; // URI
+
+        // --- IndexedDB Setup ---
+        const DB_NAME = 'UrbanLensDB';
+        const DB_VERSION = 1;
+        let db;
+
+        const initDB = () => {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                request.onerror = (event) => console.error("DB Error", event);
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('runs')) {
+                        db.createObjectStore('runs', { keyPath: 'id' });
+                    }
+                };
+                request.onsuccess = (event) => {
+                    db = event.target.result;
+                    loadHistory();
+                    resolve(db);
+                };
+            });
+        };
+
+        const storeRun = async (runData) => {
+            if (!db) await initDB();
+            const tx = db.transaction(['runs'], 'readwrite');
+            const store = tx.objectStore('runs');
+            store.put(runData);
+        };
+
+        const getRun = (id) => {
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(['runs'], 'readonly');
+                const store = tx.objectStore('runs');
+                const request = store.get(id);
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        };
+
+        const getAllRuns = () => {
+            return new Promise((resolve, reject) => {
+                if (!db) return resolve([]);
+                const tx = db.transaction(['runs'], 'readonly');
+                const store = tx.objectStore('runs');
+                const request = store.getAll();
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        };
+
+        function deleteRun(id) {
+            const tx = db.transaction(['runs'], 'readwrite');
+            const store = tx.objectStore('runs');
+            store.delete(id);
+            // Redundant cleanup for safety as requested
+            localStorage.removeItem(id);
+            tx.oncomplete = () => loadHistory();
+        }
+
+        function clearAllRuns() {
+            const tx = db.transaction(['runs'], 'readwrite');
+            const store = tx.objectStore('runs');
+            store.clear();
+            // Full storage wipe as requested
+            localStorage.clear();
+            tx.oncomplete = () => loadHistory();
+        }
+
+
+        // --- UI Interactions ---
+
+        function handleFileSelect(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const base64 = e.target.result;
+                    currentOriginalImage = base64; // STORE FOR IDB
+
+                    const preview = document.getElementById('upload-preview');
+                    const smallPreview = document.getElementById('inspector-original');
+
+                    preview.src = base64;
+                    preview.classList.remove('hidden');
+
+                    smallPreview.src = base64;
+                    smallPreview.classList.remove('opacity-50');
+                    document.getElementById('inspector-original-placeholder').style.display = 'none';
+
+                    document.getElementById('file-label').innerText = input.files[0].name;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function resetUI(isReplay = false) {
+            if (!isReplay) {
+                document.getElementById('issue-form').reset();
+                document.getElementById('upload-preview').classList.add('hidden');
+                document.getElementById('file-label').innerText = "Upload Evidence";
+                currentOriginalImage = null;
+                document.getElementById('replay-banner').classList.add('hidden');
+                document.getElementById('submit-btn').classList.remove('hidden'); // Show submit
+                document.getElementById('submit-btn').disabled = false;
+            } else {
+                document.getElementById('replay-banner').classList.remove('hidden');
+                document.getElementById('submit-btn').classList.add('hidden'); // Hide submit
+            }
+
+            document.getElementById('active-pipeline').innerHTML = '';
+            document.getElementById('active-pipeline').classList.add('hidden');
+            document.getElementById('empty-stage').classList.remove('hidden');
+            document.getElementById('reset-btn').classList.add('hidden');
+            document.getElementById('console-logs').innerHTML = '';
+
+            document.getElementById('inspector-original').src = '';
+            document.getElementById('inspector-original').classList.add('opacity-50');
+            document.getElementById('inspector-original-placeholder').style.display = 'flex';
+
+            document.getElementById('inspector-annotated').src = '';
+            document.getElementById('inspector-annotated-placeholder').style.display = 'flex';
+            document.getElementById('vision-badge').classList.add('hidden');
+
+            document.getElementById('metric-latency').innerText = '-- ms';
+            document.getElementById('metric-confidence').innerText = '--%';
+            document.getElementById('json-viewer').innerText = 'Select a pipeline step to inspect output...';
+
+            setStatus('DISCONNECTED', 'text-slate-400', 'bg-slate-500');
+
+            logCounter = 0;
+            currentRunId = null;
+            currentRunLogs = [];
+            currentRunSteps = [];
+            currentAnnotatedImage = null;
+
+            if (eventSource) eventSource.close();
+        }
+
+        function setStatus(text, textColor, indicatorColor) {
+            document.getElementById('status-text').innerText = text;
+            document.getElementById('status-text').className = `text-xs font-mono ${textColor}`;
+            document.getElementById('connection-status').className = `w-2 h-2 rounded-full ${indicatorColor} animate-pulse`;
+        }
+
+        function logConsole(source, message) {
+            // Save state
+            currentRunLogs.push({ source, message, time: Date.now() });
+
+            const div = document.createElement('div');
+            const time = new Date().toLocaleTimeString().split(' ')[0];
+            div.innerHTML = `<span class="text-slate-600">[${time}]</span> <span class="text-blue-500 font-bold">${source}:</span> <span class="text-slate-300">${message}</span>`;
+            const container = document.getElementById('console-logs');
+            container.insertBefore(div, container.firstChild);
+            logCounter++;
+            document.getElementById('log-count').innerText = `${logCounter} events`;
+
+            // Persist Update
+            if (currentRunId) persistCurrentState();
+        }
+
+        async function loadHistory() {
+            const hist = await getAllRuns();
+            // Sor by time desc
+            hist.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            const container = document.getElementById('history-list');
+            container.innerHTML = '';
+
+            if (hist.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-slate-600 text-xs italic">No execution history</div>';
+                document.getElementById('clear-history-btn').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('clear-history-btn').style.display = 'block';
+
+            hist.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "bg-slate-800 p-2 rounded border border-slate-700 hover:border-blue-500 flex justify-between items-center group transition-colors";
+                div.innerHTML = `
+                    <div class="flex flex-col cursor-pointer flex-1" onclick="replayRun('${item.id}')">
+                        <span class="text-[10px] font-mono text-slate-300">#${item.id.slice(0, 8)}</span>
+                         <span class="text-[8px] text-slate-500">${new Date(item.timestamp).toLocaleTimeString()} • ${item.description ? item.description.slice(0, 15) + '...' : 'No Desc'}</span>
+                    </div>
+                    <button onclick="deleteRun('${item.id}')" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-1">
+                        <i data-lucide="trash-2" class="w-3 h-3"></i>
+                    </button>
+                 `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        async function replayRun(id) {
+            const run = await getRun(id);
+            if (!run) return;
+
+            resetUI(true); // Is Replay Mode
+
+            // Restore Form
+            document.getElementById('desc-input').value = run.description || '';
+            document.getElementById('lat-input').value = run.formData?.latitude || '';
+            document.getElementById('lng-input').value = run.formData?.longitude || '';
+
+            // Restore Images
+            if (run.originalImage) {
+                const preview = document.getElementById('upload-preview');
+                const inspectorOrig = document.getElementById('inspector-original');
+                preview.src = run.originalImage;
+                preview.classList.remove('hidden');
+                inspectorOrig.src = run.originalImage;
+                inspectorOrig.classList.remove('opacity-50');
+                document.getElementById('inspector-original-placeholder').style.display = 'none';
+            }
+
+            // Restore Logs
+            run.logs.forEach(l => {
+                const div = document.createElement('div');
+                const time = new Date(l.time).toLocaleTimeString().split(' ')[0];
+                div.innerHTML = `<span class="text-slate-600">[${time}]</span> <span class="text-blue-500 font-bold">${l.source}:</span> <span class="text-slate-300">${l.message}</span>`;
+                const container = document.getElementById('console-logs');
+                container.insertBefore(div, container.firstChild);
+            });
+            document.getElementById('log-count').innerText = `${run.logs.length} events`;
+
+            // Setup Visual Environment
+            document.getElementById('empty-stage').classList.add('hidden');
+            document.getElementById('active-pipeline').innerHTML = ''; // Ensure clear
+            document.getElementById('active-pipeline').classList.remove('hidden');
+            document.getElementById('reset-btn').classList.remove('hidden');
+
+            // Restore Steps
+            if (run.steps && run.steps.length > 0) {
+                run.steps.forEach(step => {
+                    renderStep(step.agent_name, 'replaying'); // Render Container
+                    updateStep(step.agent_name, step.data);   // Fill Data
+
+                    // If Vision step, restore annotated image
+                    if (step.agent_name === 'VisionAgent' && step.data.result.annotated_urls) {
+                        const img = document.getElementById('inspector-annotated');
+                        img.src = step.data.result.annotated_urls[0];
+                        document.getElementById('inspector-annotated-placeholder').style.display = 'none';
+                        document.getElementById('vision-badge').classList.remove('hidden');
+                        if (step.data.result.primary_confidence) {
+                            document.getElementById('metric-confidence').innerText = `${(step.data.result.primary_confidence * 100).toFixed(1)}%`;
+                        }
+                    }
+                });
+                setStatus('REPLAY LOADED', 'text-amber-400', 'bg-amber-500');
+            } else {
+                setStatus('ARCHIVED DATA', 'text-slate-400', 'bg-slate-500');
+            }
+        }
+
+        function clearHistory() {
+            if (confirm('Delete all execution history from database?')) {
+                clearAllRuns();
+            }
+        }
+
+
+        // --- Utilities ---
+
+        function dataURItoBlob(dataURI) {
+            const byteString = atob(dataURI.split(',')[1]);
+            const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], { type: mimeString });
+        }
+
+        // --- Pipeline Logic ---
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            // Client-side Validation
+            const fileInput = document.getElementById('file');
+            if (fileInput.files.length === 0 && !currentOriginalImage) {
+                alert("Please upload an image evidence first.");
+                return;
+            }
+
+            // 1. Capture Data
+            const form = document.getElementById('issue-form');
+            const formData = new FormData(form);
+
+            // Handle Replay: Inject stored image if input is empty
+            if (fileInput.files.length === 0 && currentOriginalImage) {
+                if (currentOriginalImage.startsWith('data:')) {
+                    const blob = dataURItoBlob(currentOriginalImage);
+                    formData.append('images', blob, "replayed_evidence_base64.jpg");
+                } else {
+                    // It's a server URL - fetch it
+                    try {
+                        const resp = await fetch(currentOriginalImage);
+                        const blob = await resp.blob();
+                        formData.append('images', blob, "replayed_evidence_url.jpg");
+                    } catch (e) {
+                        console.error("Failed to fetch replayed image", e);
+                        alert("Could not load original image for replay. Source unreachable.");
+                        return;
+                    }
+                }
+            }
+            const formObj = Object.fromEntries(formData.entries());
+
+            // Capture image for storage BEFORE reset clears the global
+            // We use local (Base64) initially, but will overwrite with Server URL on success
+            let imgToSave = currentOriginalImage;
+
+            // 2. Reset UI (Visuals)
+            resetUI(false);
+
+            const btn = document.getElementById('submit-btn');
+            btn.classList.add('hidden');
+            document.getElementById('reset-btn').classList.remove('hidden');
+            document.getElementById('empty-stage').classList.add('hidden');
+            document.getElementById('active-pipeline').classList.remove('hidden');
+
+            setStatus('INITIALIZING...', 'text-blue-400', 'bg-blue-500');
+            startTime = Date.now();
+
+            try {
+                // Initial Log with current Image
+                logConsole('System', 'Initializing agent pipeline...');
+
+                const res = await fetch(`${API_BASE}/issues/stream`, { method: 'POST', body: formData });
+                if (!res.ok) throw new Error('API Error');
+                const data = await res.json();
+
+                // Initialize Run Record
+                currentRunId = data.issue_id;
+
+                // Use Server URL if available
+                if (data.image_urls && data.image_urls.length > 0) {
+                    imgToSave = data.image_urls[0];
+                }
+
+                // Restore the global explicitly with the SERVER URL now
+                currentOriginalImage = imgToSave;
+
+                await storeRun({
+                    id: currentRunId,
+                    timestamp: new Date().toISOString(),
+                    description: formObj.description,
+                    formData: formObj,
+                    originalImage: imgToSave,
+                    logs: [],
+                    steps: []
+                });
+
+                logConsole('API', `Issue Created: ${data.issue_id}`);
+                connectStream(data.stream_url);
+
+            } catch (err) {
+                logConsole('Error', err.message);
+                setStatus('ERROR', 'text-red-500', 'bg-red-500');
+            }
+        }
+
+        function connectStream(url) {
+            eventSource = new EventSource(url);
+            setStatus('CONNECTED', 'text-emerald-400', 'bg-emerald-500');
+
+            eventSource.onopen = () => logConsole('Stream', 'Connection established');
+
+            eventSource.onmessage = (e) => {
+                const payload = JSON.parse(e.data);
+                handleStreamEvent(payload);
+            };
+
+            eventSource.onerror = (e) => {
+                logConsole('Stream', 'Connection closed');
+                setStatus('COMPLETED', 'text-slate-400', 'bg-slate-600');
+                eventSource.close();
+                // Final save
+                persistCurrentState();
+                loadHistory(); // Refresh Sidebar
+            };
+        }
+
+        function handleStreamEvent(packet) {
+            const { type, data } = packet;
+            const content = data || packet;
+
+            if (type === 'step_started') {
+                logConsole('Pipeline', `Started: ${content.agent_name}`);
+                renderStep(content.agent_name, 'running');
+            }
+            else if (type === 'step_completed') {
+                logConsole('Pipeline', `Completed: ${content.agent_name}`);
+
+                // Save Step to state
+                currentRunSteps.push({ agent_name: content.agent_name, data: content });
+                persistCurrentState();
+
+                updateStep(content.agent_name, content);
+
+                // Visualizers
+                if (content.agent_name === 'VisionAgent' && content.result.annotated_urls) {
+                    updateVisionInspector(content.result);
+                }
+
+                const elapsed = Date.now() - startTime;
+                document.getElementById('metric-latency').innerText = `${elapsed}ms`;
+            }
+        }
+
+        async function persistCurrentState() {
+            if (!currentRunId) return;
+            const run = await getRun(currentRunId);
+            if (run) {
+                run.logs = currentRunLogs;
+                run.steps = currentRunSteps;
+                run.originalImage = currentOriginalImage || run.originalImage;
+                await storeRun(run);
+            }
+        }
+
+        // --- Rendering Components ---
+
+        function renderStep(agentName, status) {
+            const container = document.getElementById('active-pipeline');
+            const id = `step-${agentName.replace(/\s+/g, '-')}`;
+
+            if (document.getElementById(id)) return;
+
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = "relative pl-12 py-4 animate-in slide-in-from-left-4 fade-in duration-300";
+
+            const isFirst = container.children.length === 0;
+
+            div.innerHTML = `
+                ${!isFirst ? '<div class="step-connector"></div>' : ''}
+                <div class="absolute left-0 top-6 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center z-10 shadow-lg transition-colors duration-500" id="${id}-icon">
+                    <i data-lucide="loader-2" class="w-5 h-5 text-blue-500 animate-spin"></i>
+                </div>
+                
+                <div class="glass-panel rounded-xl p-5 border-l-4 border-l-transparent transition-all duration-300 hover:border-l-blue-500 cursor-pointer group" onclick="inspectStep('${id}')">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-slate-200 text-sm tracking-wide">${agentName}</h3>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded font-mono animate-pulse" id="${id}-badge">RUNNING</span>
+                    </div>
+                    <div class="text-xs text-slate-500 font-mono" id="${id}-body">Processing...</div>
+                </div>
+                <script type="application/json" id="${id}-data">{}<\/script>
+            `;
+
+            container.appendChild(div);
+            lucide.createIcons();
+        }
+
+        function updateStep(agentName, data) {
+            const id = `step-${agentName.replace(/\s+/g, '-')}`;
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            const store = document.createElement('script');
+            store.id = `${id}-data`;
+            store.type = 'application/json';
+            store.text = JSON.stringify(data.result || data, null, 2);
+
+            const oldStore = document.getElementById(`${id}-data`);
+            if (oldStore) oldStore.remove();
+            el.appendChild(store);
+
+            const icon = document.getElementById(`${id}-icon`);
+            const badge = document.getElementById(`${id}-badge`);
+            const body = document.getElementById(`${id}-body`);
+            const connector = el.querySelector('.step-connector');
+
+            icon.innerHTML = `<i data-lucide="check" class="w-5 h-5 text-white"></i>`;
+            icon.className = "absolute left-0 top-6 w-10 h-10 rounded-xl bg-emerald-500 shadow-lg shadow-emerald-500/30 flex items-center justify-center z-10 scale-110 transition-transform";
+
+            badge.className = "text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono";
+            badge.innerText = "COMPLETED";
+
+            body.innerText = data.decision || data.reasoning || "Process completed successfully";
+            body.className = "text-xs text-slate-400";
+
+            if (connector) connector.classList.add('active');
+
+            lucide.createIcons();
+
+            // If live flow, verify if inspected
+            // For replay flow, auto-inspection might be distracting, so we skip auto-inspect here
+        }
+
+        function inspectStep(id) {
+            const dataEl = document.getElementById(`${id}-data`);
+            if (!dataEl) return;
+
+            const raw = JSON.parse(dataEl.text);
+            const viewer = document.getElementById('json-viewer');
+            viewer.innerText = JSON.stringify(raw, null, 2);
+
+            document.querySelectorAll('.glass-panel').forEach(p => p.classList.remove('ring-1', 'ring-blue-500'));
+            document.querySelector(`#${id} .glass-panel`)?.classList.add('ring-1', 'ring-blue-500');
+        }
+
+        function updateVisionInspector(result) {
+            // Update Annotated Image
+            if (result.annotated_urls && result.annotated_urls.length > 0) {
+                const img = document.getElementById('inspector-annotated');
+                img.src = result.annotated_urls[0];
+                document.getElementById('inspector-annotated-placeholder').style.display = 'none';
+                document.getElementById('vision-badge').classList.remove('hidden');
+            }
+            // Update Original Image from Global State (URL or Base64)
+            if (currentOriginalImage) {
+                const origImg = document.getElementById('inspector-original');
+                origImg.src = currentOriginalImage;
+                origImg.classList.remove('opacity-50');
+                document.getElementById('inspector-original-placeholder').style.display = 'none';
+            }
+
+            if (result.primary_confidence) {
+                document.getElementById('metric-confidence').innerText = `${(result.primary_confidence * 100).toFixed(1)}%`;
+            }
+        }
+
+        // --- Modal Logic ---
+
+        function openZoomModal(src, title) {
+            if (!src) return;
+            const modal = document.getElementById('zoom-modal');
+            const img = document.getElementById('modal-img');
+            const titleEl = document.getElementById('modal-title');
+
+            img.src = src;
+            titleEl.innerText = title || 'Evidence Preview';
+
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeZoomModal() {
+            const modal = document.getElementById('zoom-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        // Initialize DB on Boot
+        initDB();
+
+    </script>
+</body>
+
+</html>
