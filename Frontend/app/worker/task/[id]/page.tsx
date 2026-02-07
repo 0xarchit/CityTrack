@@ -124,7 +124,9 @@ export default function TaskDetailPage() {
 
   if (loading) {
     return (
-      <div className="text-slate-600 font-medium">Loading Task Details...</div>
+      <div className="text-slate-600 font-medium max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        Loading Task Details...
+      </div>
     );
   }
 
@@ -134,7 +136,7 @@ export default function TaskDetailPage() {
         <p className="text-slate-500 text-lg">Task not found</p>
         <button
           onClick={() => router.back()}
-          className="mt-4 text-blue-600 font-medium hover:underline"
+          className="mt-4 text-urban-primary font-medium hover:underline"
         >
           Go Back
         </button>
@@ -143,7 +145,7 @@ export default function TaskDetailPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between">
         <button
           onClick={() => router.back()}
@@ -155,7 +157,7 @@ export default function TaskDetailPage() {
           href={`https://www.google.com/maps?q=${task.latitude},${task.longitude}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 transform hover:-translate-y-0.5"
+          className="px-5 py-2.5 bg-urban-primary text-white text-sm font-bold rounded-xl hover:bg-emerald-600 transition shadow-lg hover:shadow-emerald-500/30 flex items-center gap-2 transform hover:-translate-y-0.5"
         >
           <Navigation className="w-4 h-4" /> Navigation
         </a>
@@ -163,7 +165,7 @@ export default function TaskDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
-          <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-slate-200/60 shadow-urban-sm overflow-hidden">
+          <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm overflow-hidden">
             {task.annotated_url ? (
               <div className="relative h-72 bg-slate-100 group">
                 <img
@@ -171,9 +173,9 @@ export default function TaskDetailPage() {
                   alt="Issue"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-60"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-bold text-lg text-shadow-sm">{task.category}</p>
+                  <p className="font-bold text-lg">{task.category}</p>
                 </div>
               </div>
             ) : (
@@ -184,15 +186,19 @@ export default function TaskDetailPage() {
 
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
-                <span className={`px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wide border ${
-                    task.state === 'pending_verification' ? 'bg-orange-50 text-orange-700 border-orange-200' :
-                    task.state === 'resolved' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                    'bg-blue-50 text-blue-700 border-blue-200'
-                }`}>
+                <span
+                  className={`px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wide border ${
+                    task.state === "pending_verification"
+                      ? "bg-orange-50 text-orange-700 border-orange-200"
+                      : task.state === "resolved"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                        : "bg-urban-primary/10 text-urban-primary border-urban-primary/20"
+                  }`}
+                >
                   {task.state.replace("_", " ")}
                 </span>
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-auto">
-                   ID: {task.id.slice(0, 8)}
+                  ID: {task.id.slice(0, 8)}
                 </span>
               </div>
 
@@ -203,7 +209,7 @@ export default function TaskDetailPage() {
                 {task.full_address}
               </p>
 
-              <div className="grid grid-cols-2 gap-6 py-6 border-t border-slate-200/60">
+              <div className="grid grid-cols-2 gap-6 py-6 border-t border-slate-200/70">
                 <div>
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-1">
                     Reported On
@@ -227,9 +233,9 @@ export default function TaskDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-slate-200/60 shadow-urban-sm p-8 h-fit sticky top-6">
-          <h2 className="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200/60 pb-4 flex items-center gap-2">
-            <span className="w-1.5 h-6 bg-blue-600 rounded-full"></span>
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm p-8 h-fit sticky top-6">
+          <h2 className="text-xl font-black text-slate-900 mb-6 border-b border-slate-200/70 pb-4 flex items-center gap-2">
+            <span className="w-1.5 h-6 bg-urban-primary rounded-full"></span>
             Task Action
           </h2>
 
@@ -242,7 +248,7 @@ export default function TaskDetailPage() {
               </p>
               <button
                 onClick={handleStart}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-blue-500/40 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-1"
+                className="w-full py-4 bg-urban-primary hover:bg-emerald-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-emerald-500/40 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-1"
               >
                 Start Task
               </button>
@@ -268,8 +274,8 @@ export default function TaskDetailPage() {
                   onClick={() => fileRef.current?.click()}
                   className={`w-full p-8 border-2 border-dashed rounded-2xl transition-all group ${
                     previewUrl
-                      ? "border-blue-500 bg-blue-50/50"
-                      : "border-slate-300 hover:border-blue-400 hover:bg-slate-50"
+                      ? "border-urban-primary bg-urban-primary/10"
+                      : "border-slate-300 hover:border-urban-primary/50 hover:bg-slate-50"
                   }`}
                 >
                   {previewUrl ? (
@@ -279,14 +285,14 @@ export default function TaskDetailPage() {
                         alt="Proof"
                         className="h-48 mx-auto rounded-xl shadow-md object-cover mb-4"
                       />
-                      <span className="text-sm font-bold text-blue-600 group-hover:text-blue-700">
+                      <span className="text-sm font-bold text-urban-primary group-hover:text-emerald-700">
                         Change Photo
                       </span>
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center text-slate-400 group-hover:text-blue-500 transition-colors">
-                      <div className="p-4 bg-slate-100 rounded-full mb-3 group-hover:bg-blue-100 transition-colors">
-                         <Camera className="w-8 h-8" />
+                    <div className="flex flex-col items-center text-slate-400 group-hover:text-urban-primary transition-colors">
+                      <div className="p-4 bg-slate-100 rounded-full mb-3 group-hover:bg-urban-primary/10 transition-colors">
+                        <Camera className="w-8 h-8" />
                       </div>
                       <span className="font-bold">Tap to Upload Photo</span>
                     </div>
@@ -301,7 +307,7 @@ export default function TaskDetailPage() {
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 transition-all resize-none"
                   rows={4}
                   placeholder="Describe the repair work completed..."
                 />
@@ -325,7 +331,7 @@ export default function TaskDetailPage() {
           ) : task.state === "pending_verification" ? (
             <div className="text-center py-10 bg-orange-50/50 rounded-2xl border border-orange-100">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
               </div>
               <h3 className="text-xl font-bold text-orange-900 mb-2">
                 Under Review
@@ -337,7 +343,9 @@ export default function TaskDetailPage() {
           ) : (
             <div className="text-center py-10 bg-emerald-50/50 rounded-2xl border border-emerald-100">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <div className="w-8 h-8 text-emerald-600 font-bold text-2xl">✓</div>
+                <div className="w-8 h-8 text-emerald-600 font-bold text-2xl">
+                  ✓
+                </div>
               </div>
               <h3 className="text-xl font-bold text-emerald-900 mb-2">
                 Task Completed

@@ -48,12 +48,11 @@ export default function DepartmentDetailPage() {
   const [loading, setLoading] = useState(true);
   const [showAddMember, setShowAddMember] = useState(false);
 
-  // Form State
   const [newMember, setNewMember] = useState({
     name: "",
     email: "",
     role: "worker",
-    password: "", // Required by backend
+    password: "",
     phone: "",
     city: "",
     max_workload: 10,
@@ -88,7 +87,7 @@ export default function DepartmentDetailPage() {
       await apiPost("/admin/members", {
         ...newMember,
         department_id: department.id,
-        locality: "General", // Default for now
+        locality: "General",
       });
       setShowAddMember(false);
       setNewMember({
@@ -100,7 +99,7 @@ export default function DepartmentDetailPage() {
         city: "",
         max_workload: 10,
       });
-      loadData(department.id); // Refresh list
+      loadData(department.id);
       alert("Member added successfully!");
     } catch (error: any) {
       alert(error.message || "Failed to add member");
@@ -110,8 +109,6 @@ export default function DepartmentDetailPage() {
   const handleDeleteMember = async (memberId: string) => {
     if (!confirm("Are you sure you want to remove this member?")) return;
     try {
-      // Assuming there is a delete endpoint, though strictly not in the original brief, it's good UX
-      // backend/api/routes/admin.py lines 612-624 supports DELETE /members/{member_id}
       const token = localStorage.getItem("supabase_token");
       await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/members/${memberId}`,
@@ -128,7 +125,7 @@ export default function DepartmentDetailPage() {
 
   if (loading) {
     return (
-      <div className="p-8 text-center text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-500">
         Loading Department...
       </div>
     );
@@ -139,8 +136,7 @@ export default function DepartmentDetailPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 p-6">
-      {/* Header */}
+    <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-6 lg:px-8 py-8">
       <div>
         <Link
           href="/admin/departments"
@@ -148,10 +144,10 @@ export default function DepartmentDetailPage() {
         >
           <ArrowLeft className="w-4 h-4" /> Back to Departments
         </Link>
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-3xl font-bold text-slate-900">
+              <h1 className="text-3xl font-black text-slate-900">
                 {department.name}
               </h1>
               <span className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-sm font-mono font-bold border border-slate-200">
@@ -175,9 +171,8 @@ export default function DepartmentDetailPage() {
         </div>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card border-l-4 border-l-blue-500 p-6">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm p-6">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">
@@ -187,34 +182,31 @@ export default function DepartmentDetailPage() {
                 {members.length}
               </h3>
             </div>
-            <div className="h-10 w-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
+            <div className="h-10 w-10 bg-urban-primary/10 rounded-lg flex items-center justify-center text-urban-primary">
               <Users className="w-6 h-6" />
             </div>
           </div>
         </div>
-        {/* Add more stats if available */}
       </div>
 
-      {/* Members Section */}
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
             <Users className="w-5 h-5 text-slate-400" />
             Department Members
           </h2>
           <button
             onClick={() => setShowAddMember(true)}
-            className="btn-primary flex items-center gap-2"
+            className="px-4 py-2 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition flex items-center gap-2"
           >
             <Plus className="w-4 h-4" /> Add Worker
           </button>
         </div>
 
-        {/* Add Member Form (Inline/Expandable) */}
         {showAddMember && (
-          <div className="card bg-slate-50 border-slate-200 animate-in fade-in slide-in-from-top-4">
-            <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-200">
-              <h3 className="text-lg font-bold text-slate-800">
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm p-6">
+            <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-200/70">
+              <h3 className="text-lg font-black text-slate-800">
                 Add New Member
               </h3>
               <button
@@ -234,7 +226,7 @@ export default function DepartmentDetailPage() {
                 </label>
                 <input
                   required
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="John Doe"
                   value={newMember.name}
                   onChange={(e) =>
@@ -249,7 +241,7 @@ export default function DepartmentDetailPage() {
                 <input
                   required
                   type="email"
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="john@city.gov"
                   value={newMember.email}
                   onChange={(e) =>
@@ -262,7 +254,7 @@ export default function DepartmentDetailPage() {
                   Role
                 </label>
                 <select
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   value={newMember.role}
                   onChange={(e) =>
                     setNewMember({ ...newMember, role: e.target.value })
@@ -280,7 +272,7 @@ export default function DepartmentDetailPage() {
                 <input
                   required
                   type="password"
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="••••••••"
                   value={newMember.password}
                   onChange={(e) =>
@@ -293,7 +285,7 @@ export default function DepartmentDetailPage() {
                   Phone (Optional)
                 </label>
                 <input
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="+1 234..."
                   value={newMember.phone}
                   onChange={(e) =>
@@ -306,7 +298,7 @@ export default function DepartmentDetailPage() {
                   City (Optional)
                 </label>
                 <input
-                  className="input w-full bg-white"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="East District"
                   value={newMember.city}
                   onChange={(e) =>
@@ -318,11 +310,14 @@ export default function DepartmentDetailPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddMember(false)}
-                  className="btn-secondary"
+                  className="px-5 py-2.5 bg-white/80 text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn-primary">
+                <button
+                  type="submit"
+                  className="px-5 py-2.5 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition"
+                >
                   Create Member Account
                 </button>
               </div>
@@ -330,10 +325,9 @@ export default function DepartmentDetailPage() {
           </div>
         )}
 
-        {/* Members List */}
-        <div className="card p-0 overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm p-0 overflow-hidden">
           <table className="w-full text-left">
-            <thead className="bg-slate-50 border-b border-slate-200">
+            <thead className="bg-slate-50/80 border-b border-slate-200/70">
               <tr>
                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
                   Name / Email
@@ -356,7 +350,7 @@ export default function DepartmentDetailPage() {
               {members.map((member) => (
                 <tr
                   key={member.id}
-                  className="hover:bg-slate-50/50 transition-colors"
+                  className="hover:bg-urban-primary/5 transition-colors"
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
@@ -403,7 +397,7 @@ export default function DepartmentDetailPage() {
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${member.current_workload > 5 ? "bg-orange-500" : "bg-green-500"}`}
+                          className={`h-full rounded-full ${member.current_workload > 5 ? "bg-amber-500" : "bg-urban-primary"}`}
                           style={{
                             width: `${(member.current_workload / (member.max_workload || 10)) * 100}%`,
                           }}

@@ -40,10 +40,22 @@ interface WorkerPerformance {
 }
 
 export default function WorkersPage() {
-  const { data: departmentsData, loading: deptLoading, revalidate: revalidateDept } = useCachedFetch<Department[]>("/admin/departments");
-  const { data: workersData, loading: workersLoading, revalidate: revalidateWorkers } = useCachedFetch<Worker[]>("/admin/members");
-  const { data: perfData, loading: perfLoading, revalidate: revalidatePerf } = useCachedFetch<WorkerPerformance[]>("/admin/workers/performance");
-  
+  const {
+    data: departmentsData,
+    loading: deptLoading,
+    revalidate: revalidateDept,
+  } = useCachedFetch<Department[]>("/admin/departments");
+  const {
+    data: workersData,
+    loading: workersLoading,
+    revalidate: revalidateWorkers,
+  } = useCachedFetch<Worker[]>("/admin/members");
+  const {
+    data: perfData,
+    loading: perfLoading,
+    revalidate: revalidatePerf,
+  } = useCachedFetch<WorkerPerformance[]>("/admin/workers/performance");
+
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -56,11 +68,11 @@ export default function WorkersPage() {
   const [search, setSearch] = useState("");
 
   const departments = departmentsData || [];
-  
+
   const workers = useMemo(() => {
     if (!workersData) return [];
-    const perfMap = new Map((perfData || []).map(p => [p.id, p]));
-    
+    const perfMap = new Map((perfData || []).map((p) => [p.id, p]));
+
     return workersData.map((w) => {
       const perf = perfMap.get(w.id);
       return {
@@ -106,14 +118,14 @@ export default function WorkersPage() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-6">
           <Skeleton className="h-10 w-64" />
           <Skeleton className="h-10 w-32" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (
-            <Skeleton key={i} className="h-48 rounded-xl" />
+            <Skeleton key={i} className="h-48 rounded-2xl" />
           ))}
         </div>
       </div>
@@ -130,28 +142,28 @@ export default function WorkersPage() {
     );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h2 className="text-2xl font-black text-slate-900">
             Workforce Management
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 font-medium">
             Manage field workers, assign tasks, and monitor performance.
           </p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-sm flex items-center gap-2"
+          className="px-4 py-2 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition shadow-sm flex items-center gap-2"
         >
           <Plus className="w-4 h-4" /> Enroll Worker
         </button>
       </div>
 
       {showForm && (
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-top-4">
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-            <h2 className="text-lg font-bold text-slate-800">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-urban-md border border-slate-200/70 overflow-hidden">
+          <div className="bg-slate-50/80 px-6 py-4 border-b border-slate-200/70">
+            <h2 className="text-lg font-black text-slate-800">
               New Worker Enrollment
             </h2>
           </div>
@@ -167,7 +179,7 @@ export default function WorkersPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="e.g. John Doe"
                   required
                 />
@@ -182,7 +194,7 @@ export default function WorkersPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="worker@city.gov"
                   required
                 />
@@ -199,7 +211,7 @@ export default function WorkersPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   required
                   minLength={8}
                   placeholder="••••••••"
@@ -215,7 +227,7 @@ export default function WorkersPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, department_id: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   required
                 >
                   <option value="">Select Department...</option>
@@ -231,14 +243,14 @@ export default function WorkersPage() {
             <div className="flex gap-3 pt-2">
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-sm"
+                className="px-6 py-2.5 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition shadow-sm"
               >
                 Enroll Worker
               </button>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
-                className="px-6 py-2 bg-white text-slate-700 font-medium rounded-lg border border-slate-300 hover:bg-slate-50 transition"
+                className="px-6 py-2.5 bg-white/80 text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition"
               >
                 Cancel
               </button>
@@ -249,16 +261,16 @@ export default function WorkersPage() {
 
       <div className="flex gap-4 mb-4">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
           <input
             type="text"
             placeholder="Search workers by name or email..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:border-blue-500 outline-none"
+            className="w-full pl-9 pr-4 py-2.5 bg-white/70 border border-slate-200 rounded-xl text-sm focus:border-urban-primary/40 focus:ring-4 focus:ring-urban-primary/10 outline-none"
           />
         </div>
-        <button className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-600 flex items-center gap-2 hover:bg-slate-50">
+        <button className="px-3 py-2.5 bg-white/70 border border-slate-200 rounded-xl text-slate-600 flex items-center gap-2 hover:bg-slate-50">
           <Filter className="w-4 h-4" /> Filter
         </button>
       </div>
@@ -271,7 +283,7 @@ export default function WorkersPage() {
         </div>
 
         {filteredWorkers.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-xl border border-slate-200">
+          <div className="text-center py-16 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/70">
             <HardHat className="w-12 h-12 mx-auto text-slate-300" />
             <p className="text-slate-500 mt-2">No field workers found.</p>
           </div>
@@ -280,11 +292,11 @@ export default function WorkersPage() {
             {filteredWorkers.map((worker) => (
               <div
                 key={worker.id}
-                className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-lg font-bold text-slate-700 border border-slate-200">
+                    <div className="w-10 h-10 rounded-full bg-urban-primary/10 flex items-center justify-center text-lg font-bold text-urban-primary border border-urban-primary/20">
                       {worker.name.charAt(0)}
                     </div>
                     <div>
@@ -301,7 +313,7 @@ export default function WorkersPage() {
                   )}
                 </div>
 
-                <div className="py-3 border-t border-slate-100 mb-3 space-y-2">
+                <div className="py-3 border-t border-slate-100/70 mb-3 space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Department</span>
                     <span className="font-medium text-slate-900">
@@ -343,7 +355,7 @@ export default function WorkersPage() {
                           ? "bg-red-500"
                           : worker.current_workload > worker.max_workload * 0.7
                             ? "bg-amber-500"
-                            : "bg-blue-600"
+                            : "bg-urban-primary"
                       }`}
                       style={{
                         width: `${Math.min(

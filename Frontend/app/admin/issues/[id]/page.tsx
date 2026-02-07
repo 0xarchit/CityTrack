@@ -194,15 +194,21 @@ export default function IssueDetailPage() {
 
   if (loading)
     return (
-      <div className="p-8 text-center text-slate-500">Loading details...</div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-500">
+        Loading details...
+      </div>
     );
   if (!data)
-    return <div className="p-8 text-center text-red-500">Issue not found</div>;
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-red-500">
+        Issue not found
+      </div>
+    );
 
   const { issue, department, worker, events } = data;
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link
@@ -212,7 +218,7 @@ export default function IssueDetailPage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+            <h1 className="text-2xl font-black text-slate-900 flex items-center gap-3">
               Issue #{issue.id.slice(0, 8)}
               <span
                 className={`text-sm px-2.5 py-0.5 rounded-full border font-medium uppercase tracking-wide 
@@ -240,14 +246,14 @@ export default function IssueDetailPage() {
               <button
                 onClick={() => handleReview("rejected")}
                 disabled={actionLoading}
-                className="px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50"
+                className="px-4 py-2 text-sm font-semibold text-red-600 bg-white border border-red-200 rounded-xl hover:bg-red-50"
               >
                 Reject & Close
               </button>
               <button
                 onClick={() => handleReview("approved")}
                 disabled={actionLoading}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                className="px-4 py-2 text-sm font-semibold text-white bg-urban-primary rounded-xl hover:bg-emerald-600"
               >
                 Approve & Assign
               </button>
@@ -259,14 +265,14 @@ export default function IssueDetailPage() {
               <button
                 onClick={() => handleResolutionReview("reject")}
                 disabled={actionLoading}
-                className="px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50"
+                className="px-4 py-2 text-sm font-semibold text-red-600 bg-white border border-red-200 rounded-xl hover:bg-red-50"
               >
                 Reject Incomplete Work
               </button>
               <button
                 onClick={() => handleResolutionReview("approve")}
                 disabled={actionLoading}
-                className="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700"
+                className="px-4 py-2 text-sm font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700"
               >
                 Verify & Approve
               </button>
@@ -284,8 +290,8 @@ export default function IssueDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+          <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm">
+            <h3 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
               <ImageIcon className="w-5 h-5 text-slate-400" />
               Evidence Photos
             </h3>
@@ -298,7 +304,7 @@ export default function IssueDetailPage() {
                   {issue.image_urls.map((url, idx) => (
                     <div
                       key={idx}
-                      className="aspect-video bg-slate-100 rounded-lg overflow-hidden border border-slate-200 relative group"
+                      className="aspect-video bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 relative group"
                     >
                       <img
                         src={url}
@@ -329,14 +335,14 @@ export default function IssueDetailPage() {
                     {issue.annotated_urls.map((url, idx) => (
                       <div
                         key={idx}
-                        className="aspect-video bg-slate-100 rounded-lg overflow-hidden border border-blue-200 relative group"
+                        className="aspect-video bg-slate-100 rounded-2xl overflow-hidden border border-urban-primary/30 relative group"
                       >
                         <img
                           src={url}
                           alt={`Analyzed ${idx + 1}`}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                        <div className="absolute top-2 left-2 bg-urban-primary text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                           AI Detected
                         </div>
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -361,13 +367,13 @@ export default function IssueDetailPage() {
                     Work Completion Proof
                   </h4>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="aspect-video bg-slate-100 rounded-lg overflow-hidden border border-green-200 relative group">
+                    <div className="aspect-video bg-slate-100 rounded-2xl overflow-hidden border border-emerald-200 relative group">
                       <img
                         src={issue.proof_image_url}
                         alt="Work Proof"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                      <div className="absolute top-2 left-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                         Worker Proof
                       </div>
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -386,15 +392,15 @@ export default function IssueDetailPage() {
               )}
 
               {issue.image_urls.length === 0 && !issue.proof_image_url && (
-                <div className="py-8 text-center text-slate-400 bg-slate-50 rounded-lg border border-dashed border-slate-300">
+                <div className="py-8 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
                   No images attached
                 </div>
               )}
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+          <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm">
+            <h3 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
               <Activity className="w-5 h-5 text-slate-400" />
               Analysis & Details
             </h3>
@@ -457,7 +463,7 @@ export default function IssueDetailPage() {
                     </label>
                     <button
                       onClick={() => setEditingPriority(!editingPriority)}
-                      className="p-1 opacity-0 group-hover:opacity-100 hover:bg-slate-100 rounded text-slate-400 hover:text-blue-500 transition-all"
+                      className="p-1 opacity-0 group-hover:opacity-100 hover:bg-slate-100 rounded text-slate-400 hover:text-urban-primary transition-all"
                       aria-label="Edit Priority"
                     >
                       <Pencil className="w-3 h-3" />
@@ -472,7 +478,7 @@ export default function IssueDetailPage() {
                         onChange={(e) =>
                           setSelectedPriority(Number(e.target.value))
                         }
-                        className="bg-white border rounded px-2 py-1 text-sm flex-1"
+                        className="bg-white border border-slate-200 rounded-lg px-2 py-1 text-sm flex-1 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40"
                       >
                         <option value="1">P1 - Critical</option>
                         <option value="2">P2 - High</option>
@@ -483,7 +489,7 @@ export default function IssueDetailPage() {
                         onClick={() =>
                           handleUpdate({ priority: selectedPriority })
                         }
-                        className="p-1.5 bg-blue-100 text-blue-600 rounded hover:bg-blue-200"
+                        className="p-1.5 bg-urban-primary/10 text-urban-primary rounded hover:bg-urban-primary/20"
                         aria-label="Save"
                       >
                         <Save className="w-4 h-4" />
@@ -519,14 +525,14 @@ export default function IssueDetailPage() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">
+          <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm">
+            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wide mb-4">
               Assignment
             </h3>
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                <div className="w-9 h-9 rounded-full bg-urban-primary/10 flex items-center justify-center text-urban-primary">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
@@ -541,7 +547,7 @@ export default function IssueDetailPage() {
                 <div className="absolute right-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => setEditingAssignment(!editingAssignment)}
-                    className="p-1 hover:bg-slate-100 rounded text-slate-400 hover:text-blue-500"
+                    className="p-1 hover:bg-slate-100 rounded text-slate-400 hover:text-urban-primary"
                     aria-label="Edit Assignment"
                   >
                     <Pencil className="w-3 h-3" />
@@ -559,7 +565,7 @@ export default function IssueDetailPage() {
                         aria-label="Select worker"
                         value={selectedWorker}
                         onChange={(e) => setSelectedWorker(e.target.value)}
-                        className="bg-white border rounded px-2 py-1 text-sm w-full"
+                        className="bg-white border border-slate-200 rounded-lg px-2 py-1 text-sm w-full focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40"
                       >
                         <option value="">Unassigned</option>
                         {workers.map((w) => (
@@ -575,13 +581,13 @@ export default function IssueDetailPage() {
                               assigned_member_id: selectedWorker || null,
                             })
                           }
-                          className="flex-1 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700"
+                          className="flex-1 py-1 bg-urban-primary text-white text-xs rounded-lg hover:bg-emerald-600"
                         >
                           Save
                         </button>
                         <button
                           onClick={() => setEditingAssignment(false)}
-                          className="flex-1 py-1 bg-slate-200 text-slate-700 text-xs rounded hover:bg-slate-300"
+                          className="flex-1 py-1 bg-slate-200 text-slate-700 text-xs rounded-lg hover:bg-slate-300"
                         >
                           Cancel
                         </button>
@@ -604,7 +610,7 @@ export default function IssueDetailPage() {
 
               {issue.sla_deadline && (
                 <div className="pt-4 border-t border-slate-100">
-                  <div className="flex items-center gap-2 text-amber-600 bg-amber-50 px-3 py-2 rounded-lg">
+                  <div className="flex items-center gap-2 text-amber-600 bg-amber-50 px-3 py-2 rounded-xl">
                     <Clock className="w-4 h-4" />
                     <div>
                       <div className="text-[10px] font-bold uppercase">
@@ -620,8 +626,8 @@ export default function IssueDetailPage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-6">
+          <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm relative overflow-hidden">
+            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wide mb-6">
               Activity Audit
             </h3>
 
@@ -632,7 +638,7 @@ export default function IssueDetailPage() {
             <div className="space-y-0 text-sm relative border-l-2 border-slate-100 ml-2">
               {events.map((event, idx) => (
                 <div key={idx} className="pl-6 pb-6 relative last:pb-0">
-                  <div className="absolute -left-2.25 top-0 w-4 h-4 rounded-full bg-white border-2 border-blue-500"></div>
+                  <div className="absolute -left-2.25 top-0 w-4 h-4 rounded-full bg-white border-2 border-urban-primary"></div>
                   <div className="flex flex-col">
                     <span className="font-semibold text-slate-900">
                       {event.agent || "System"}

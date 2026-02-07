@@ -1,10 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
-// Removed duplicate imports
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
-import { apiGet } from "@/lib/api";
 import {
   Coffee,
   MapPin,
@@ -31,22 +28,16 @@ interface Task {
 
 import { useCachedFetch } from "@/hooks/useCachedFetch";
 
-// ... existing imports
-
 export default function WorkerDashboard() {
   const { user, role, loading: authLoading } = useAuth();
   const router = useRouter();
-  
-  // Use cached fetch for instant load + background update
+
   const { data: tasksData, loading: tasksLoading } = useCachedFetch<Task[]>(
-    role === "worker" ? "/worker/tasks" : "" 
+    role === "worker" ? "/worker/tasks" : "",
   );
 
   const tasks = tasksData || [];
-  
-  // Combine loading states
   const isLoading = authLoading || (tasksLoading && tasks.length === 0);
-
 
   const getPriorityBadge = (priority: number) => {
     const badges: Record<number, { bg: string; text: string; border: string }> =
@@ -79,7 +70,9 @@ export default function WorkerDashboard() {
       <span
         className={`px-2.5 py-1 rounded-md text-xs font-bold border ${badge.bg} ${badge.text} ${badge.border} flex items-center gap-1.5`}
       >
-        <span className={`w-1.5 h-1.5 rounded-full ${priority === 1 ? 'bg-red-500' : priority === 2 ? 'bg-orange-500' : priority === 3 ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
+        <span
+          className={`w-1.5 h-1.5 rounded-full ${priority === 1 ? "bg-red-500" : priority === 2 ? "bg-orange-500" : priority === 3 ? "bg-amber-500" : "bg-emerald-500"}`}
+        ></span>
         {labels[priority] || "Unknown"}
       </span>
     );
@@ -113,20 +106,22 @@ export default function WorkerDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">My Assignments</h2>
-          <p className="text-sm text-slate-500">
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            My Assignments
+          </h2>
+          <p className="text-sm text-slate-500 font-medium">
             Tasks assigned to you for resolution.
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md transition-all">
+        <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl shadow-sm">
+            <div className="p-2.5 bg-urban-primary/10 text-urban-primary rounded-xl shadow-sm">
               <AlertCircle className="w-5 h-5" />
             </div>
             <h3 className="text-slate-500 font-bold text-xs uppercase tracking-wider font-mono">
@@ -136,12 +131,12 @@ export default function WorkerDashboard() {
           <p className="text-4xl font-extrabold text-slate-900 mt-2 tracking-tighter">
             {
               tasks.filter((t) =>
-                ["assigned", "in_progress", "rejected"].includes(t.state)
+                ["assigned", "in_progress", "rejected"].includes(t.state),
               ).length
             }
           </p>
         </div>
-        <div className="bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md transition-all">
+        <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl shadow-sm">
               <Coffee className="w-5 h-5" />
@@ -153,24 +148,22 @@ export default function WorkerDashboard() {
           <p className="text-4xl font-extrabold text-slate-900 mt-2 tracking-tighter">
             {
               tasks.filter((t) =>
-                ["pending_verification", "resolved"].includes(t.state)
+                ["pending_verification", "resolved"].includes(t.state),
               ).length
             }
           </p>
         </div>
       </div>
 
-      <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-        <span className="w-1 h-5 bg-blue-600 rounded-full"></span>
+      <h3 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+        <span className="w-1.5 h-5 bg-urban-primary rounded-full"></span>
         Current Assignments
       </h3>
 
       {tasks.length === 0 ? (
-        <div className="text-center py-16 bg-white/40 backdrop-blur-sm rounded-2xl border border-slate-200/60 border-dashed">
+        <div className="text-center py-16 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200/70 border-dashed">
           <Coffee className="w-12 h-12 mx-auto text-slate-300 mb-4" />
-          <p className="text-slate-900 font-bold text-lg">
-            All caught up!
-          </p>
+          <p className="text-slate-900 font-bold text-lg">All caught up!</p>
           <p className="text-slate-500 text-sm mt-1">
             Enjoy your break, no pending assignments.
           </p>
@@ -179,8 +172,8 @@ export default function WorkerDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {tasks.map((task) => (
             <Link key={task.id} href={`/worker/task/${task.id}`}>
-              <div className="h-full p-6 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md hover:-translate-y-1 hover:border-blue-300/50 transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-slate-200 group-hover:bg-blue-500 transition-colors"></div>
+              <div className="h-full p-6 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md hover:-translate-y-1 hover:border-urban-primary/30 transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-slate-200 group-hover:bg-urban-primary transition-colors"></div>
                 <div>
                   <div className="flex justify-between items-start mb-4 pl-2">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -190,8 +183,8 @@ export default function WorkerDashboard() {
                           task.state === "pending_verification"
                             ? "bg-orange-50 text-orange-700 border-orange-200"
                             : task.state === "resolved"
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                            : "bg-slate-100 text-slate-600 border-slate-200"
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              : "bg-slate-100 text-slate-600 border-slate-200"
                         }`}
                       >
                         {task.state === "pending_verification"
@@ -201,14 +194,14 @@ export default function WorkerDashboard() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 pl-2 group-hover:text-blue-700 transition-colors line-clamp-2 tracking-tight">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 pl-2 group-hover:text-urban-primary transition-colors line-clamp-2 tracking-tight">
                     {task.description || "Issue Report"}
                   </h3>
 
                   <div className="py-3 pl-2 space-y-2.5">
                     <div className="flex items-center gap-2.5 text-sm text-slate-600">
                       <div className="p-1.5 bg-slate-100 rounded-md text-slate-500">
-                         <MapPin className="w-3.5 h-3.5" />
+                        <MapPin className="w-3.5 h-3.5" />
                       </div>
                       <span className="truncate font-medium">
                         {task.full_address || `${task.city}, ${task.locality}`}
@@ -230,7 +223,7 @@ export default function WorkerDashboard() {
                   <span className="text-xs text-slate-400 font-mono font-medium bg-slate-100 px-2 py-1 rounded">
                     ID: {task.id.slice(0, 8)}
                   </span>
-                  <span className="text-blue-600 text-sm font-bold flex items-center gap-1.5 group-hover:gap-2.5 transition-all bg-blue-50/50 px-3 py-1.5 rounded-lg border border-blue-100/50 group-hover:bg-blue-100 group-hover:border-blue-200">
+                  <span className="text-urban-primary text-sm font-bold flex items-center gap-1.5 group-hover:gap-2.5 transition-all bg-urban-primary/10 px-3 py-1.5 rounded-lg border border-urban-primary/20 group-hover:bg-urban-primary/20 group-hover:border-urban-primary/30">
                     Resolve <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>

@@ -37,7 +37,6 @@ export default function DashboardSidebar({
 }: SidebarProps) {
   const pathname = usePathname();
 
-  // ... (links definition skipped for brevity if not changing, but we are inside function)
   const adminLinks = [
     { href: "/admin", label: "Overview", icon: LayoutDashboard },
     { href: "/admin/issues", label: "Issues", icon: ClipboardList },
@@ -70,14 +69,14 @@ export default function DashboardSidebar({
       >
         <div className="flex h-16 items-center px-6 border-b border-slate-100/50">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-              <span className="text-white font-bold font-mono">U</span>
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-urban-primary to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+              <span className="text-white font-bold font-mono">C</span>
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">
               CityTracker
             </span>
           </div>
-          <span className="ml-auto rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-600 ring-1 ring-blue-100">
+          <span className="ml-auto rounded-full bg-urban-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-urban-primary ring-1 ring-urban-primary/20">
             {role}
           </span>
         </div>
@@ -95,18 +94,18 @@ export default function DashboardSidebar({
                   className={cn(
                     "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group relative overflow-hidden",
                     isActive
-                      ? "bg-blue-50 text-blue-700 shadow-sm ring-1 ring-blue-100"
+                      ? "bg-urban-primary/10 text-urban-primary shadow-sm ring-1 ring-urban-primary/20"
                       : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >
                   {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-blue-500 rounded-r-full" />
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-urban-primary rounded-r-full" />
                   )}
                   <Icon
                     className={cn(
                       "h-5 w-5 transition-transform group-hover:scale-110",
                       isActive
-                        ? "text-blue-600"
+                        ? "text-urban-primary"
                         : "text-slate-400 group-hover:text-slate-600",
                     )}
                   />

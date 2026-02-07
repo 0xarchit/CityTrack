@@ -37,10 +37,10 @@ interface IssuesResponse {
 export default function IssuesPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [page, setPage] = useState(1);
   const limit = 10;
-  
+
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<string>("");
   const [priority, setPriority] = useState<string>("");
@@ -79,7 +79,8 @@ export default function IssuesPage() {
     return `/admin/issues?${query.toString()}`;
   }, [page, limit, sort, order, debouncedSearch, status, priority]);
 
-  const { data: issuesData, loading } = useCachedFetch<IssuesResponse>(queryUrl);
+  const { data: issuesData, loading } =
+    useCachedFetch<IssuesResponse>(queryUrl);
 
   const issues = issuesData?.items || [];
   const meta: Meta = {
@@ -119,31 +120,31 @@ export default function IssuesPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
             Issue Management
           </h1>
-          <p className="text-slate-500 text-sm">
+          <p className="text-slate-500 text-sm font-medium">
             Monitor, assign, and resolve reported city issues.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setStatus("pending_verification")}
-            className="px-4 py-2 bg-orange-100 text-orange-800 text-sm font-medium rounded-lg hover:bg-orange-200 transition flex items-center gap-2 border border-orange-200"
+            className="px-4 py-2 bg-amber-100 text-amber-800 text-sm font-semibold rounded-xl hover:bg-amber-200 transition flex items-center gap-2 border border-amber-200"
           >
             <AlertCircle className="w-4 h-4" />
             Pending Reviews
           </button>
-          <button className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition">
+          <button className="bg-slate-900 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-800 transition">
             Export CSV
           </button>
         </div>
       </div>
 
-      <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-slate-200/60 shadow-urban-sm p-4 transition-all">
+      <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-slate-200/70 shadow-urban-sm p-4 sm:p-6 transition-all">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="md:col-span-2 relative group">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
@@ -152,7 +153,7 @@ export default function IssuesPage() {
               placeholder="Search by ID, description, or location..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-sm border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all font-sans"
+              className="w-full pl-10 pr-4 py-2.5 text-sm border border-slate-200 bg-white/70 rounded-xl focus:outline-none focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 transition-all font-sans"
             />
           </div>
 
@@ -160,7 +161,7 @@ export default function IssuesPage() {
             aria-label="Filter by Status"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="px-3 py-2 text-sm border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all font-sans"
+            className="px-3 py-2.5 text-sm border border-slate-200 bg-white/70 rounded-xl focus:outline-none focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 transition-all font-sans"
           >
             <option value="">All Statuses</option>
             <option value="reported">Reported</option>
@@ -177,7 +178,7 @@ export default function IssuesPage() {
             aria-label="Filter by Priority"
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
-            className="px-3 py-2 text-sm border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all font-sans"
+            className="px-3 py-2.5 text-sm border border-slate-200 bg-white/70 rounded-xl focus:outline-none focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 transition-all font-sans"
           >
             <option value="">All Priorities</option>
             <option value="1">Critical (P1)</option>
@@ -193,7 +194,7 @@ export default function IssuesPage() {
             Loading issues...
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-slate-200/50">
+          <div className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/60">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-slate-200/60 text-xs uppercase text-slate-500 bg-slate-50/80 font-mono tracking-wider">
@@ -240,7 +241,7 @@ export default function IssuesPage() {
                   issues.map((issue) => (
                     <tr
                       key={issue.id}
-                      className="group hover:bg-blue-50/30 transition-colors duration-200"
+                      className="group hover:bg-urban-primary/5 transition-colors duration-200"
                     >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
@@ -258,10 +259,10 @@ export default function IssuesPage() {
                             )}
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-slate-900 truncate max-w-50 font-display">
+                            <div className="text-sm font-semibold text-slate-900 truncate max-w-50">
                               {issue.category || "Uncategorized Issue"}
                             </div>
-                            <div className="text-xs text-slate-500 truncate max-w-50 font-sans">
+                            <div className="text-xs text-slate-500 truncate max-w-50">
                               {issue.description || "No description provided"}
                             </div>
                           </div>
@@ -301,7 +302,9 @@ export default function IssuesPage() {
                             <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-700 ring-2 ring-white shadow-sm">
                               {issue.assigned_to.charAt(0)}
                             </div>
-                            <span className="font-medium text-slate-700">{issue.assigned_to}</span>
+                            <span className="font-medium text-slate-700">
+                              {issue.assigned_to}
+                            </span>
                           </div>
                         ) : (
                           <span className="text-slate-400 italic text-xs">
@@ -315,7 +318,9 @@ export default function IssuesPage() {
                         )}
                       </td>
                       <td className="px-4 py-3 text-sm text-slate-600">
-                        <span className="font-medium">{new Date(issue.created_at).toLocaleDateString()}</span>
+                        <span className="font-medium">
+                          {new Date(issue.created_at).toLocaleDateString()}
+                        </span>
                         <div className="text-xs text-slate-400 font-mono">
                           {new Date(issue.created_at).toLocaleTimeString([], {
                             hour: "2-digit",
@@ -326,7 +331,7 @@ export default function IssuesPage() {
                       <td className="px-4 py-3 text-right">
                         <Link
                           href={`/admin/issues/${issue.id}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-800 bg-blue-50 px-2.5 py-1.5 rounded-lg border border-blue-100 hover:bg-blue-100 transition-colors"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-urban-primary hover:text-emerald-700 bg-urban-primary/10 px-2.5 py-1.5 rounded-lg border border-urban-primary/20 hover:bg-urban-primary/20 transition-colors"
                         >
                           View
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -350,20 +355,22 @@ export default function IssuesPage() {
             <span className="font-semibold text-slate-900">
               {Math.min(meta.page * meta.limit, meta.total)}
             </span>{" "}
-            of <span className="font-semibold text-slate-900">{meta.total}</span> results
+            of{" "}
+            <span className="font-semibold text-slate-900">{meta.total}</span>{" "}
+            results
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => handlePageChange(meta.page - 1)}
               disabled={meta.page === 1}
-              className="px-3.5 py-1.5 text-sm font-medium border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-slate-700"
+              className="px-3.5 py-1.5 text-sm font-semibold border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-slate-700"
             >
               Previous
             </button>
             <button
               onClick={() => handlePageChange(meta.page + 1)}
               disabled={meta.page === meta.pages}
-              className="px-3.5 py-1.5 text-sm font-medium border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-slate-700"
+              className="px-3.5 py-1.5 text-sm font-semibold border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-slate-700"
             >
               Next
             </button>

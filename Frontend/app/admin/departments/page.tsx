@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
-import { apiGet, apiPost } from "@/lib/api";
+import { useState } from "react";
+import { apiPost } from "@/lib/api";
+import { useCachedFetch } from "@/hooks/useCachedFetch";
 import { Building2, Plus, Search } from "lucide-react";
 
 interface Department {
@@ -14,8 +15,6 @@ interface Department {
 }
 
 export default function DepartmentsPage() {
-  const [departments, setDepartments] = useState<Department[]>([]);
-  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -23,21 +22,9 @@ export default function DepartmentsPage() {
     description: "",
     default_sla_hours: 48,
   });
-
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
-
-  const fetchDepartments = async () => {
-    try {
-      const data = await apiGet<Department[]>("/admin/departments");
-      setDepartments(data);
-    } catch (error) {
-      console.error("Failed to fetch departments:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, loading, revalidate } =
+    useCachedFetch<Department[]>("/admin/departments");
+  const departments = data || [];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +37,7 @@ export default function DepartmentsPage() {
         description: "",
         default_sla_hours: 48,
       });
-      fetchDepartments();
+      revalidate();
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Failed to create department";
@@ -60,31 +47,33 @@ export default function DepartmentsPage() {
 
   if (loading) {
     return (
-      <div className="text-slate-600 font-medium">Loading Departments...</div>
+      <div className="text-slate-600 font-medium max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        Loading Departments...
+      </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Departments</h2>
-          <p className="text-sm text-slate-500">
+          <h2 className="text-2xl font-black text-slate-900">Departments</h2>
+          <p className="text-sm text-slate-500 font-medium">
             Organizational units and SLA configurations.
           </p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-sm flex items-center gap-2"
+          className="px-4 py-2 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition shadow-sm flex items-center gap-2"
         >
           <Plus className="w-4 h-4" /> New Department
         </button>
       </div>
 
       {showForm && (
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-top-4">
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-            <h2 className="text-lg font-bold text-slate-800">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-urban-md border border-slate-200/70 overflow-hidden">
+          <div className="bg-slate-50/80 px-6 py-4 border-b border-slate-200/70">
+            <h2 className="text-lg font-black text-slate-800">
               Create New Department
             </h2>
           </div>
@@ -100,7 +89,7 @@ export default function DepartmentsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="e.g., Public Works Department"
                   required
                 />
@@ -118,7 +107,7 @@ export default function DepartmentsPage() {
                       code: e.target.value.toUpperCase(),
                     })
                   }
-                  className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                   placeholder="e.g., PWD"
                   required
                 />
@@ -138,7 +127,7 @@ export default function DepartmentsPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })
                 }
-                className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
                 rows={2}
                 placeholder="Brief description of responsibilities..."
               />
@@ -161,21 +150,21 @@ export default function DepartmentsPage() {
                     default_sla_hours: parseInt(e.target.value),
                   })
                 }
-                className="w-32 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-32 px-4 py-2.5 bg-white/70 border border-slate-300 rounded-xl text-slate-900 focus:ring-4 focus:ring-urban-primary/10 focus:border-urban-primary/40 outline-none"
               />
             </div>
 
             <div className="flex gap-3 pt-2">
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-sm"
+                className="px-6 py-2.5 bg-urban-primary text-white font-semibold rounded-xl hover:bg-emerald-600 transition shadow-sm"
               >
                 Create Department
               </button>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
-                className="px-6 py-2 bg-white text-slate-700 font-medium rounded-lg border border-slate-300 hover:bg-slate-50 transition"
+                className="px-6 py-2.5 bg-white/80 text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition"
               >
                 Cancel
               </button>
@@ -186,7 +175,7 @@ export default function DepartmentsPage() {
 
       <div className="space-y-4">
         {departments.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-xl border border-slate-200">
+          <div className="text-center py-16 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-200/70">
             <Building2 className="w-12 h-12 mx-auto text-slate-300" />
             <p className="text-slate-500 mt-4 text-lg">No departments found.</p>
             <p className="text-slate-400 text-sm">
@@ -194,9 +183,9 @@ export default function DepartmentsPage() {
             </p>
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-urban-sm border border-slate-200/70 overflow-hidden">
             <table className="min-w-full divide-y divide-slate-200">
-              <thead className="bg-slate-50">
+              <thead className="bg-slate-50/80">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     Department
@@ -214,10 +203,13 @@ export default function DepartmentsPage() {
               </thead>
               <tbody className="divide-y divide-slate-200">
                 {departments.map((dept) => (
-                  <tr key={dept.id} className="hover:bg-slate-50 transition">
+                  <tr
+                    key={dept.id}
+                    className="hover:bg-urban-primary/5 transition"
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="shrink-0 h-10 w-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                        <div className="shrink-0 h-10 w-10 rounded-xl bg-urban-primary/10 text-urban-primary flex items-center justify-center font-bold text-sm">
                           {dept.code}
                         </div>
                         <div className="ml-4">
@@ -242,7 +234,7 @@ export default function DepartmentsPage() {
                       <span
                         className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           dept.is_active
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-emerald-100 text-emerald-800"
                             : "bg-red-100 text-red-800"
                         }`}
                       >

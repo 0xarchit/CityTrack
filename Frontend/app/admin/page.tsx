@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useCachedFetch } from "@/hooks/useCachedFetch";
 import {
@@ -49,9 +49,9 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <Skeleton className="h-8 w-48 mb-6" />
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-6">
+      <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Skeleton className="h-8 w-48" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} className="h-32 rounded-2xl" />
           ))}
@@ -70,23 +70,28 @@ export default function AdminDashboard() {
     stats?.issues_activity && stats.issues_activity.length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-          Overview
-        </h2>
+        <div>
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            Overview
+          </h2>
+          <p className="text-sm text-slate-500 font-medium">
+            City operations at a glance
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
         <StatCard
           title="Departments"
           value={stats?.departments || 0}
-          icon={<Building2 className="w-5 h-5 text-blue-600" />}
+          icon={<Building2 className="w-5 h-5 text-urban-primary" />}
         />
         <StatCard
           title="Total Staff"
           value={stats?.members || 0}
-          icon={<Users className="w-5 h-5 text-purple-600" />}
+          icon={<Users className="w-5 h-5 text-amber-500" />}
         />
         <StatCard
           title="Total Issues"
@@ -106,7 +111,7 @@ export default function AdminDashboard() {
           <StatCard
             title="Needs Review"
             value={stats?.verification_needed || 0}
-            icon={<ClipboardCheck className="w-5 h-5 text-indigo-600" />}
+            icon={<ClipboardCheck className="w-5 h-5 text-urban-primary" />}
             alert={(stats?.verification_needed || 0) > 0}
           />
         </Link>
@@ -118,9 +123,9 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md transition-all">
-          <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
+        <div className="lg:col-span-2 bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all">
+          <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-3">
+            <span className="w-1.5 h-6 bg-urban-primary rounded-full"></span>
             Weekly Activity
           </h3>
           {hasActivityData ? (
@@ -139,13 +144,21 @@ export default function AdminDashboard() {
                     dataKey="name"
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: "#64748B", fontSize: 12, fontFamily: 'var(--font-fira-sans)' }}
+                    tick={{
+                      fill: "#64748B",
+                      fontSize: 12,
+                      fontFamily: "var(--font-fira-sans)",
+                    }}
                     dy={10}
                   />
                   <YAxis
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: "#64748B", fontSize: 12, fontFamily: 'var(--font-fira-sans)' }}
+                    tick={{
+                      fill: "#64748B",
+                      fontSize: 12,
+                      fontFamily: "var(--font-fira-sans)",
+                    }}
                   />
                   <Tooltip
                     cursor={{ fill: "#F1F5F9" }}
@@ -155,21 +168,24 @@ export default function AdminDashboard() {
                       boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
                       backgroundColor: "rgba(255, 255, 255, 0.9)",
                       backdropFilter: "blur(4px)",
-                      fontFamily: 'var(--font-fira-sans)',
+                      fontFamily: "var(--font-fira-sans)",
                     }}
                   />
-                  <Legend iconType="circle" wrapperStyle={{ fontFamily: 'var(--font-fira-sans)' }} />
+                  <Legend
+                    iconType="circle"
+                    wrapperStyle={{ fontFamily: "var(--font-fira-sans)" }}
+                  />
                   <Bar
                     dataKey="reported"
                     name="Reported"
-                    fill="#3B82F6"
+                    fill="#0ea5a4"
                     radius={[4, 4, 0, 0]}
                     barSize={20}
                   />
                   <Bar
                     dataKey="resolved"
                     name="Resolved"
-                    fill="#10B981"
+                    fill="#22c55e"
                     radius={[4, 4, 0, 0]}
                     barSize={20}
                   />
@@ -183,9 +199,9 @@ export default function AdminDashboard() {
           )}
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md transition-all">
-          <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-purple-500 rounded-full"></span>
+        <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all">
+          <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-3">
+            <span className="w-1.5 h-6 bg-amber-500 rounded-full"></span>
             Issues by Category
           </h3>
           {hasChartData ? (
@@ -209,17 +225,21 @@ export default function AdminDashboard() {
                       />
                     ))}
                   </Pie>
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{
                       borderRadius: "12px",
                       border: "1px solid rgba(226, 232, 240, 0.8)",
                       boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
                       backgroundColor: "rgba(255, 255, 255, 0.9)",
                       backdropFilter: "blur(4px)",
-                      fontFamily: 'var(--font-fira-sans)',
+                      fontFamily: "var(--font-fira-sans)",
                     }}
                   />
-                  <Legend verticalAlign="bottom" height={36} wrapperStyle={{ fontFamily: 'var(--font-fira-sans)' }} />
+                  <Legend
+                    verticalAlign="bottom"
+                    height={36}
+                    wrapperStyle={{ fontFamily: "var(--font-fira-sans)" }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -246,7 +266,7 @@ function StatCard({
   alert?: boolean;
 }) {
   return (
-    <div className="bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-slate-200/60 shadow-urban-sm hover:shadow-urban-md transition-all hover:-translate-y-1 group">
+    <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-slate-200/70 shadow-urban-sm hover:shadow-urban-md transition-all hover:-translate-y-1 group">
       <div className="flex justify-between items-start mb-4">
         <div className="p-3 bg-white rounded-xl border border-slate-100 shadow-sm group-hover:scale-110 transition-transform duration-300">
           {icon}
