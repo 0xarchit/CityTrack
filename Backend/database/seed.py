@@ -22,7 +22,7 @@ async def seed_data(engine: AsyncEngine):
                 code="PWD",
                 description="Roads, Potholes, Infrastructure",
                 default_sla_hours=48,
-                escalation_email="pwd_head@city.gov"
+                escalation_email="zrxarchit+pwd_head@gmail.com"
             ),
             Department(
                 id=sanitation_id,
@@ -30,7 +30,7 @@ async def seed_data(engine: AsyncEngine):
                 code="SANITATION",
                 description="Garbage, Cleaning, Waste",
                 default_sla_hours=24,
-                escalation_email="sanitation_head@city.gov"
+                escalation_email="zrxarchit+sanitation_head@gmail.com"
             ),
             Department(
                 id=traffic_id,
@@ -38,7 +38,7 @@ async def seed_data(engine: AsyncEngine):
                 code="TRAFFIC",
                 description="Signals, Signs, Illegal Parking",
                 default_sla_hours=12,
-                escalation_email="traffic_head@city.gov"
+                escalation_email="zrxarchit+traffic_head@gmail.com"
             )
         ]
         

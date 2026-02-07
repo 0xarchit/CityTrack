@@ -42,18 +42,6 @@ interface AgentStep {
 
 const initialAgents: AgentStep[] = [
   {
-    name: "LocationStep",
-    iconName: "location",
-    label: "Verifying Location",
-    status: "pending",
-  },
-  {
-    name: "UploadStep",
-    iconName: "cloud-upload",
-    label: "Secure Upload",
-    status: "pending",
-  },
-  {
     name: "VisionAgent",
     iconName: "eye",
     label: "Vision Agent",
@@ -105,7 +93,7 @@ export function ProcessingScreen() {
 
   useEffect(() => {
     submitIssue();
-    
+
     Animated.loop(
       Animated.sequence([
         Animated.timing(scanLineAnim, {
@@ -117,8 +105,8 @@ export function ProcessingScreen() {
           toValue: 0,
           duration: 0,
           useNativeDriver: true,
-        })
-      ])
+        }),
+      ]),
     ).start();
   }, []);
 
@@ -262,7 +250,12 @@ export function ProcessingScreen() {
 
   const submitIssue = async () => {
     try {
-      console.log("[ProcessingScreen] Submitting issue - session present:", !!session, "access_token present:", !!session?.access_token);
+      console.log(
+        "[ProcessingScreen] Submitting issue - session present:",
+        !!session,
+        "access_token present:",
+        !!session?.access_token,
+      );
       const result = await issueService.createIssue(
         imageUri,
         location,
@@ -302,14 +295,15 @@ export function ProcessingScreen() {
     outputRange: [0, 180], // Match image height
   });
 
-
   return (
     <LinearGradient
       colors={[colors.background.primary, colors.background.secondary]}
       style={styles.container}
     >
       <View style={styles.header}>
-        <View style={[styles.headerIcon, isComplete && styles.headerIconComplete]}>
+        <View
+          style={[styles.headerIcon, isComplete && styles.headerIconComplete]}
+        >
           {isComplete ? (
             <Ionicons name="sparkles" size={32} color={colors.secondary.main} />
           ) : (
@@ -334,11 +328,11 @@ export function ProcessingScreen() {
         <Image source={{ uri: imageUri }} style={styles.image} />
         {!isComplete && (
           <View style={styles.imageOverlay}>
-            <Animated.View 
+            <Animated.View
               style={[
-                styles.scanLine, 
-                { transform: [{ translateY: scanTranslateY }] }
-              ]} 
+                styles.scanLine,
+                { transform: [{ translateY: scanTranslateY }] },
+              ]}
             />
             <View style={styles.gridOverlay} />
           </View>
@@ -352,7 +346,11 @@ export function ProcessingScreen() {
           />
         </View>
         <Text style={styles.progressText}>
-          {Math.round((agents.filter(a => a.status === 'done').length / agents.length) * 100)}% Complete
+          {Math.round(
+            (agents.filter((a) => a.status === "done").length / agents.length) *
+              100,
+          )}
+          % Complete
         </Text>
       </View>
 
@@ -390,8 +388,8 @@ export function ProcessingScreen() {
                   agent.status === "done"
                     ? colors.secondary.main
                     : agent.status === "running"
-                    ? colors.primary.main
-                    : colors.text.tertiary
+                      ? colors.primary.main
+                      : colors.text.tertiary
                 }
               />
             </View>
@@ -407,7 +405,9 @@ export function ProcessingScreen() {
               </Text>
 
               {agent.decision ? (
-                <Text style={styles.agentDecision}>Result: {agent.decision}</Text>
+                <Text style={styles.agentDecision}>
+                  Result: {agent.decision}
+                </Text>
               ) : null}
             </View>
 
@@ -441,7 +441,12 @@ export function ProcessingScreen() {
 
       {isComplete && (
         <View style={styles.actions}>
-          <Button title="View Receipt" onPress={handleViewDetails} fullWidth size="lg" />
+          <Button
+            title="View Receipt"
+            onPress={handleViewDetails}
+            fullWidth
+            size="lg"
+          />
           <Button
             title="Return Home"
             variant="ghost"
@@ -490,7 +495,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.text.secondary,
     textAlign: "center",
-    maxWidth: '80%',
+    maxWidth: "80%",
   },
   imageContainer: {
     height: 200,
@@ -514,11 +519,11 @@ const styles = StyleSheet.create({
   imageOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "transparent",
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   gridOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "transparent", 
+    backgroundColor: "transparent",
     // Add grid background image or implementation if feasible, otherwise keep transparent
   },
   scanLine: {
@@ -532,8 +537,8 @@ const styles = StyleSheet.create({
   },
   progressContainer: {
     marginBottom: spacing.lg,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
   },
   progressTrack: {
@@ -553,7 +558,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     fontWeight: "600",
     width: 90,
-    textAlign: 'right',
+    textAlign: "right",
   },
   agentsContainer: {
     flex: 1,
@@ -624,7 +629,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   actions: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
     left: 20,
     right: 20,
