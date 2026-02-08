@@ -8,7 +8,7 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
     ],
     "Pothole Issues": [
         "pothole", "hole", "pit", "crater", "dip", "depression", "bump",
-        "cavity", "hollow", "gap"
+        "cavity", "hollow", "gap", "broken road", "road"
     ],
     "Illegal Parking Issues": [
         "parking", "parked", "car", "vehicle", "illegal", "wrong", "blocking",
@@ -27,7 +27,7 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
         "filth", "debris", "plastic", "pile", "mess", "junk", "disposal"
     ],
     "Vandalism Issues": [
-        "vandal", "graffiti", "spray", "paint", "defaced", "broken",
+        "vandal", "graffiti", "spray", "paint", "defaced",
         "smashed", "destroyed", "damaged property", "torn"
     ],
     "Dead Animal Pollution": [
