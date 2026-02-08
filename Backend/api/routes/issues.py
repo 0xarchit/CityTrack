@@ -47,6 +47,7 @@ def issue_to_response(issue: Issue) -> IssueResponse:
         confidence=issue.classification.primary_confidence if issue.classification else None,
         image_urls=image_urls,
         annotated_urls=annotated_urls,
+        proof_image_url=get_upload_url(issue.proof_image_path) if issue.proof_image_path else None,
         validation_source=issue.validation_source,
         is_duplicate=issue.is_duplicate,
         parent_issue_id=issue.parent_issue_id,
