@@ -26,10 +26,6 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
         "garbage", "trash", "litter", "waste", "rubbish", "dump", "dirty",
         "filth", "debris", "plastic", "pile", "mess", "junk", "disposal"
     ],
-    "Vandalism Issues": [
-        "vandal", "graffiti", "spray", "paint", "defaced",
-        "smashed", "destroyed", "torn"
-    ],
     "Dead Animal Pollution": [
         "dead", "animal", "carcass", "body", "corpse", "rotting", "smell",
         "stink", "dog", "cat", "bird", "cow", "roadkill"

@@ -56,7 +56,7 @@ Priority Scale:
 1 = CRITICAL (Public safety, electrical hazards, major hazards)
 2 = HIGH (Potholes, road damage, fallen trees)
 3 = MEDIUM (Garbage, broken signs, minor structures)
-4 = LOW (Parking violations, minor vandalism)
+4 = LOW (Parking violations)
 
 Consider safety impact, infrastructure criticality, and community accessibility.
 

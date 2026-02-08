@@ -56,15 +56,36 @@ class VisionAgent(BaseAgent):
     async def download_image(self, remote_path: str) -> bytes:
         return await download_from_supabase(remote_path)
     
-    async def save_annotated(self, results, original_path: str, subfolder: str) -> str:
-        im_array = results[0].plot()
-        
+    async def save_annotated(
+        self,
+        image_data: bytes,
+        detections: list[DetectionBox],
+        primary_class_id: Optional[int],
+        original_path: str,
+        subfolder: str,
+    ) -> str:
+        nparr = np.frombuffer(image_data, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if img is None:
+            raise ValueError("Invalid image data")
+
+        if primary_class_id is not None:
+            draw_detections = [d for d in detections if d.class_id == primary_class_id]
+        else:
+            draw_detections = []
+
+        for d in draw_detections:
+            x1, y1, x2, y2 = map(int, d.bbox)
+            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            label = f"{d.class_name} {d.confidence:.2f}"
+            cv2.putText(img, label, (x1, max(y1 - 10, 0)), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
+
         original_name = Path(original_path).stem
         annotated_filename = f"annotated_{original_name}.jpg"
-        
-        _, buffer = cv2.imencode('.jpg', im_array, [cv2.IMWRITE_JPEG_QUALITY, 90])
+
+        _, buffer = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 90])
         image_bytes = buffer.tobytes()
-        
+
         remote_path = await save_bytes(image_bytes, annotated_filename, subfolder=subfolder)
         return remote_path
     
@@ -162,8 +183,9 @@ class VisionAgent(BaseAgent):
     ) -> tuple[list[DetectionBox], str, Optional[IssueCategory], float, Optional[str]]:
         image_data = await self.download_image(image_path)
         results, inference_time = await self.run_inference(image_data)
-        annotated_path = await self.save_annotated(results, image_path, subfolder)
         detections = self.extract_detections(results)
+        primary_class_id = max(detections, key=lambda d: d.confidence).class_id if detections else None
+        annotated_path = await self.save_annotated(image_data, detections, primary_class_id, image_path, subfolder)
 
         gemini_category = None
         gemini_confidence = 0.0

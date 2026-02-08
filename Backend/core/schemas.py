@@ -33,7 +33,6 @@ class IssueCategory(StrEnum):
     BROKEN_SIGN = "Broken Road Sign Issues"
     FALLEN_TREE = "Fallen Trees"
     GARBAGE = "Littering/Garbage on Public Places"
-    VANDALISM = "Vandalism Issues"
     DEAD_ANIMAL = "Dead Animal Pollution"
     DAMAGED_CONCRETE = "Damaged Concrete Structures"
     DAMAGED_ELECTRIC = "Damaged Electric Wires and Poles"
@@ -46,7 +45,6 @@ CLASS_ID_TO_CATEGORY = {
     3: IssueCategory.BROKEN_SIGN,
     4: IssueCategory.FALLEN_TREE,
     5: IssueCategory.GARBAGE,
-    6: IssueCategory.VANDALISM,
     7: IssueCategory.DEAD_ANIMAL,
     8: IssueCategory.DAMAGED_CONCRETE,
     9: IssueCategory.DAMAGED_ELECTRIC,
