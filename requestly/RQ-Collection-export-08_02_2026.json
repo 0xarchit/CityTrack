@@ -1,0 +1,2875 @@
+{
+  "schema_version": "1.0.0",
+  "records": [
+    {
+      "name": "City Issue Resolution Agent",
+      "id": "0YSnx2d0m0oc3jGfZP9Q",
+      "deleted": false,
+      "data": {
+        "variables": {
+          "base_url": {
+            "isPersisted": true,
+            "syncValue": "https://0xarchit-citytrack.hf.space",
+            "type": "string",
+            "id": 0,
+            "localValue": ""
+          }
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "NO_AUTH"
+        }
+      },
+      "type": "collection",
+      "collectionId": "",
+      "description": "Autonomous urban issue detection and resolution platform"
+    },
+    {
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q",
+      "id": "5UtArI4mmQsrYqD5aTMQ",
+      "deleted": false,
+      "description": "Collection for /admin endpoints",
+      "type": "collection",
+      "name": "admin"
+    },
+    {
+      "name": "departments",
+      "id": "NSmTHtpOZY5YTGeBUCa3",
+      "type": "collection",
+      "description": "Collection for /admin/departments endpoints",
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "deleted": false,
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      }
+    },
+    {
+      "name": "Create Department",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "response": null,
+        "type": "http",
+        "request": {
+          "pathVariables": [],
+          "body": "{\n  \"name\": \"\",\n  \"code\": \"\",\n  \"description\": null,\n  \"categories\": null,\n  \"default_sla_hours\": 48,\n  \"escalation_email\": null\n}",
+          "method": "POST",
+          "queryParams": [],
+          "includeCredentials": false,
+          "headers": [],
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "{\n  \"name\": \"\",\n  \"code\": \"\",\n  \"description\": null,\n  \"categories\": null,\n  \"default_sla_hours\": 48,\n  \"escalation_email\": null\n}",
+            "form": []
+          },
+          "url": "{{base_url}}/admin/departments",
+          "contentType": "application/json"
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "deleted": false,
+      "collectionId": "NSmTHtpOZY5YTGeBUCa3",
+      "description": "",
+      "type": "api",
+      "id": "des4G2Ux32Q9FPBGeQTX",
+      "isExample": false
+    },
+    {
+      "type": "api",
+      "deleted": false,
+      "data": {
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "type": "http",
+        "request": {
+          "pathVariables": [],
+          "body": null,
+          "contentType": "text/plain",
+          "headers": [],
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "url": "{{base_url}}/admin/departments",
+          "includeCredentials": false,
+          "queryParams": [],
+          "method": "GET"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "isExample": false,
+      "collectionId": "NSmTHtpOZY5YTGeBUCa3",
+      "id": "5c2aCNO2HabL3bgKrd5U",
+      "description": "",
+      "name": "List Departments"
+    },
+    {
+      "type": "collection",
+      "id": "Ou3pobdoxs10qQMgak3y",
+      "collectionId": "NSmTHtpOZY5YTGeBUCa3",
+      "deleted": false,
+      "description": "Collection for /admin/departments/{department_id} endpoints",
+      "data": {
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "{department_id}"
+    },
+    {
+      "type": "api",
+      "id": "eUjcUDCBU9jzHLLn0PDj",
+      "data": {
+        "request": {
+          "includeCredentials": false,
+          "contentType": "text/plain",
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "id": 1,
+              "dataType": "string",
+              "description": "",
+              "value": "string",
+              "key": "department_id"
+            }
+          ],
+          "headers": [],
+          "body": null,
+          "url": "{{base_url}}/admin/departments/:department_id",
+          "method": "DELETE"
+        },
+        "type": "http",
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "response": null,
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "collectionId": "Ou3pobdoxs10qQMgak3y",
+      "description": "",
+      "deleted": false,
+      "name": "Delete Department",
+      "isExample": false
+    },
+    {
+      "id": "4dBKOUrkK7Q0N5YMFJwQ",
+      "type": "api",
+      "deleted": false,
+      "name": "Get Department",
+      "description": "",
+      "isExample": false,
+      "collectionId": "Ou3pobdoxs10qQMgak3y",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "type": "http",
+        "request": {
+          "includeCredentials": false,
+          "contentType": "text/plain",
+          "pathVariables": [
+            {
+              "value": "string",
+              "key": "department_id",
+              "dataType": "string",
+              "description": "",
+              "id": 1
+            }
+          ],
+          "url": "{{base_url}}/admin/departments/:department_id",
+          "body": null,
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "",
+            "form": []
+          },
+          "queryParams": [],
+          "method": "GET",
+          "headers": []
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null
+      }
+    },
+    {
+      "name": "Update Department",
+      "id": "v28ESEMt8JMAfnPohmpk",
+      "collectionId": "Ou3pobdoxs10qQMgak3y",
+      "deleted": false,
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "response": null,
+        "type": "http",
+        "request": {
+          "pathVariables": [
+            {
+              "description": "",
+              "id": 1,
+              "value": "string",
+              "key": "department_id",
+              "dataType": "string"
+            }
+          ],
+          "contentType": "application/json",
+          "queryParams": [],
+          "body": "{\n  \"name\": null,\n  \"description\": null,\n  \"categories\": null,\n  \"default_sla_hours\": null,\n  \"escalation_email\": null,\n  \"is_active\": null\n}",
+          "headers": [],
+          "method": "PATCH",
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "{\n  \"name\": null,\n  \"description\": null,\n  \"categories\": null,\n  \"default_sla_hours\": null,\n  \"escalation_email\": null,\n  \"is_active\": null\n}",
+            "form": []
+          },
+          "url": "{{base_url}}/admin/departments/:department_id",
+          "includeCredentials": false
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "description": "",
+      "isExample": false,
+      "type": "api"
+    },
+    {
+      "name": "issues",
+      "deleted": false,
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "description": "Collection for /admin/issues endpoints",
+      "data": {
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "type": "collection",
+      "id": "g9aXnvzaWXN6Sp4q8i38"
+    },
+    {
+      "id": "78JUcASvfwjYB631y2J8",
+      "description": "",
+      "type": "api",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "response": null,
+        "type": "http",
+        "request": {
+          "includeCredentials": false,
+          "body": null,
+          "queryParams": [
+            {
+              "isEnabled": true,
+              "key": "page",
+              "description": "",
+              "value": "1",
+              "dataType": "integer",
+              "id": 1
+            },
+            {
+              "description": "",
+              "value": "20",
+              "dataType": "integer",
+              "id": 2,
+              "key": "limit",
+              "isEnabled": true
+            },
+            {
+              "dataType": "string",
+              "description": "",
+              "isEnabled": true,
+              "key": "status",
+              "id": 3,
+              "value": "string"
+            },
+            {
+              "key": "priority",
+              "description": "",
+              "id": 4,
+              "isEnabled": true,
+              "dataType": "string",
+              "value": "string"
+            },
+            {
+              "id": 5,
+              "isEnabled": true,
+              "description": "",
+              "dataType": "string",
+              "value": "string",
+              "key": "department_id"
+            },
+            {
+              "description": "",
+              "value": "string",
+              "dataType": "string",
+              "id": 6,
+              "isEnabled": true,
+              "key": "worker_id"
+            },
+            {
+              "isEnabled": true,
+              "key": "search",
+              "dataType": "string",
+              "value": "string",
+              "description": "",
+              "id": 7
+            },
+            {
+              "isEnabled": true,
+              "key": "sort_by",
+              "description": "",
+              "id": 8,
+              "dataType": "string",
+              "value": "created_at"
+            },
+            {
+              "dataType": "string",
+              "isEnabled": true,
+              "id": 9,
+              "description": "",
+              "key": "sort_order",
+              "value": "desc"
+            }
+          ],
+          "contentType": "text/plain",
+          "pathVariables": [],
+          "method": "GET",
+          "headers": [],
+          "url": "{{base_url}}/admin/issues",
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          }
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "deleted": false,
+      "collectionId": "g9aXnvzaWXN6Sp4q8i38",
+      "name": "List Admin Issues",
+      "isExample": false
+    },
+    {
+      "description": "Collection for /admin/issues/{issue_id} endpoints",
+      "type": "collection",
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "id": "1NHWkdSF8Z5anRsSD0SB",
+      "name": "{issue_id}",
+      "deleted": false,
+      "collectionId": "g9aXnvzaWXN6Sp4q8i38"
+    },
+    {
+      "collectionId": "1NHWkdSF8Z5anRsSD0SB",
+      "name": "Update Issue Details",
+      "isExample": false,
+      "description": "",
+      "deleted": false,
+      "type": "api",
+      "id": "6qoZnNEvJBvV3iUjRuHN",
+      "data": {
+        "response": null,
+        "request": {
+          "includeCredentials": false,
+          "bodyContainer": {
+            "text": "{}",
+            "multipartForm": [],
+            "form": []
+          },
+          "contentType": "application/json",
+          "queryParams": [],
+          "url": "{{base_url}}/admin/issues/:issue_id",
+          "method": "PATCH",
+          "headers": [],
+          "pathVariables": [
+            {
+              "dataType": "string",
+              "id": 1,
+              "value": "string",
+              "key": "issue_id",
+              "description": ""
+            }
+          ],
+          "body": "{}"
+        },
+        "type": "http",
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      }
+    },
+    {
+      "name": "approve_resolution",
+      "description": "Collection for /admin/issues/{issue_id}/approve_resolution endpoints",
+      "data": {
+        "variables": {},
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "collectionId": "1NHWkdSF8Z5anRsSD0SB",
+      "id": "9IUC1g3ASROZ03T4bMSs",
+      "deleted": false,
+      "type": "collection"
+    },
+    {
+      "isExample": false,
+      "collectionId": "9IUC1g3ASROZ03T4bMSs",
+      "id": "LEZwicPdRgYWcrTlgVmR",
+      "data": {
+        "request": {
+          "method": "POST",
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "id": 1,
+              "key": "issue_id",
+              "dataType": "string",
+              "description": "",
+              "value": "string"
+            }
+          ],
+          "bodyContainer": {
+            "text": "{\n  \"action\": \"\",\n  \"comment\": null\n}",
+            "form": [],
+            "multipartForm": []
+          },
+          "includeCredentials": false,
+          "contentType": "application/json",
+          "headers": [],
+          "url": "{{base_url}}/admin/issues/:issue_id/approve_resolution",
+          "body": "{\n  \"action\": \"\",\n  \"comment\": null\n}"
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "type": "http",
+        "response": null,
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "deleted": false,
+      "description": "",
+      "name": "Approve Resolution",
+      "type": "api"
+    },
+    {
+      "deleted": false,
+      "data": {
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "collectionId": "1NHWkdSF8Z5anRsSD0SB",
+      "name": "details",
+      "type": "collection",
+      "description": "Collection for /admin/issues/{issue_id}/details endpoints",
+      "id": "rk7ClcOWlxp8Asjhnr1e"
+    },
+    {
+      "deleted": false,
+      "id": "LxO8gYOCXJL6zSHbmfjE",
+      "collectionId": "rk7ClcOWlxp8Asjhnr1e",
+      "type": "api",
+      "description": "",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "request": {
+          "method": "GET",
+          "headers": [],
+          "body": null,
+          "includeCredentials": false,
+          "contentType": "text/plain",
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "description": "",
+              "dataType": "string",
+              "key": "issue_id",
+              "value": "string",
+              "id": 1
+            }
+          ],
+          "url": "{{base_url}}/admin/issues/:issue_id/details"
+        },
+        "response": null,
+        "type": "http"
+      },
+      "name": "Get Admin Issue Details",
+      "isExample": false
+    },
+    {
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {}
+      },
+      "name": "review",
+      "description": "Collection for /admin/issues/{issue_id}/review endpoints",
+      "collectionId": "1NHWkdSF8Z5anRsSD0SB",
+      "deleted": false,
+      "type": "collection",
+      "id": "9pX6mQBvXIMXx64JGn3y"
+    },
+    {
+      "data": {
+        "request": {
+          "url": "{{base_url}}/admin/issues/:issue_id/review",
+          "method": "POST",
+          "headers": [],
+          "body": "{\n  \"status\": \"\",\n  \"reason\": null\n}",
+          "bodyContainer": {
+            "text": "{\n  \"status\": \"\",\n  \"reason\": null\n}",
+            "multipartForm": [],
+            "form": []
+          },
+          "includeCredentials": false,
+          "pathVariables": [
+            {
+              "id": 1,
+              "description": "",
+              "value": "string",
+              "key": "issue_id",
+              "dataType": "string"
+            }
+          ],
+          "contentType": "application/json",
+          "queryParams": []
+        },
+        "type": "http",
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null,
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "description": "Manually review an issue.\n- If REJECTED: Mark as rejected.\n- If APPROVED: Mark as assigned and auto-assign to a worker.",
+      "type": "api",
+      "isExample": false,
+      "id": "LZ4UnMIIu1TgIWdQdcFb",
+      "deleted": false,
+      "name": "Review Issue",
+      "collectionId": "9pX6mQBvXIMXx64JGn3y"
+    },
+    {
+      "id": "S1I45VaWwBEWWz8f7ucF",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {}
+      },
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "description": "Collection for /admin/login endpoints",
+      "type": "collection",
+      "deleted": false,
+      "name": "login"
+    },
+    {
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "request": {
+          "pathVariables": [],
+          "url": "{{base_url}}/admin/login",
+          "body": "{\n  \"email\": \"\",\n  \"password\": \"\",\n  \"expected_role\": null\n}",
+          "includeCredentials": false,
+          "headers": [],
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": "{\n  \"email\": \"\",\n  \"password\": \"\",\n  \"expected_role\": null\n}"
+          },
+          "contentType": "application/json",
+          "method": "POST",
+          "queryParams": []
+        },
+        "type": "http",
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "type": "api",
+      "description": "",
+      "id": "Tc7xVorFT5XmpW4KaK8V",
+      "collectionId": "S1I45VaWwBEWWz8f7ucF",
+      "isExample": false,
+      "name": "Staff Login",
+      "deleted": false
+    },
+    {
+      "name": "members",
+      "type": "collection",
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "variables": {}
+      },
+      "deleted": false,
+      "description": "Collection for /admin/members endpoints",
+      "id": "gk0gSeamFr0Cebxu5poI"
+    },
+    {
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null,
+        "request": {
+          "includeCredentials": false,
+          "headers": [],
+          "body": "{\n  \"department_id\": \"\",\n  \"name\": \"\",\n  \"email\": \"\",\n  \"phone\": null,\n  \"role\": \"worker\",\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": 10,\n  \"password\": \"\"\n}",
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "{\n  \"department_id\": \"\",\n  \"name\": \"\",\n  \"email\": \"\",\n  \"phone\": null,\n  \"role\": \"worker\",\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": 10,\n  \"password\": \"\"\n}",
+            "form": []
+          },
+          "url": "{{base_url}}/admin/members",
+          "method": "POST",
+          "queryParams": [],
+          "contentType": "application/json",
+          "pathVariables": []
+        },
+        "type": "http",
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "Create Member",
+      "deleted": false,
+      "description": "",
+      "type": "api",
+      "isExample": false,
+      "id": "Sh5I7eGTBFNeepkOqpQU",
+      "collectionId": "gk0gSeamFr0Cebxu5poI"
+    },
+    {
+      "isExample": false,
+      "name": "List Members",
+      "collectionId": "gk0gSeamFr0Cebxu5poI",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "response": null,
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "request": {
+          "url": "{{base_url}}/admin/members",
+          "pathVariables": [],
+          "method": "GET",
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "queryParams": [
+            {
+              "description": "",
+              "isEnabled": true,
+              "value": "string",
+              "id": 1,
+              "key": "department_id",
+              "dataType": "string"
+            }
+          ],
+          "contentType": "text/plain",
+          "headers": [],
+          "body": null,
+          "includeCredentials": false
+        }
+      },
+      "type": "api",
+      "description": "",
+      "id": "801yKQNKfKlyiJIyzU9K"
+    },
+    {
+      "deleted": false,
+      "id": "b9Nq7N2wJCqVsdoOIXPI",
+      "type": "collection",
+      "description": "Collection for /admin/members/{member_id} endpoints",
+      "collectionId": "gk0gSeamFr0Cebxu5poI",
+      "name": "{member_id}",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {}
+      }
+    },
+    {
+      "name": "Delete Member",
+      "deleted": false,
+      "type": "api",
+      "id": "gRbDzd3HtcHOPgXazGoW",
+      "description": "",
+      "isExample": false,
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "response": null,
+        "type": "http",
+        "request": {
+          "method": "DELETE",
+          "includeCredentials": false,
+          "body": null,
+          "pathVariables": [
+            {
+              "description": "",
+              "id": 1,
+              "value": "string",
+              "dataType": "string",
+              "key": "member_id"
+            }
+          ],
+          "queryParams": [],
+          "url": "{{base_url}}/admin/members/:member_id",
+          "headers": [],
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "contentType": "text/plain"
+        }
+      },
+      "collectionId": "b9Nq7N2wJCqVsdoOIXPI"
+    },
+    {
+      "collectionId": "b9Nq7N2wJCqVsdoOIXPI",
+      "type": "api",
+      "deleted": false,
+      "description": "",
+      "data": {
+        "response": null,
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "type": "http",
+        "request": {
+          "method": "GET",
+          "includeCredentials": false,
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "",
+            "form": []
+          },
+          "pathVariables": [
+            {
+              "id": 1,
+              "value": "string",
+              "dataType": "string",
+              "key": "member_id",
+              "description": ""
+            }
+          ],
+          "contentType": "text/plain",
+          "body": null,
+          "headers": [],
+          "url": "{{base_url}}/admin/members/:member_id",
+          "queryParams": []
+        }
+      },
+      "name": "Get Member",
+      "id": "fGrLaxmF3XuFEWifvEqI",
+      "isExample": false
+    },
+    {
+      "description": "",
+      "id": "WlNsdCTBLvnG0Mt7GEPi",
+      "collectionId": "b9Nq7N2wJCqVsdoOIXPI",
+      "name": "Update Member",
+      "deleted": false,
+      "isExample": false,
+      "data": {
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "request": {
+          "url": "{{base_url}}/admin/members/:member_id",
+          "method": "PATCH",
+          "contentType": "application/json",
+          "headers": [],
+          "queryParams": [],
+          "bodyContainer": {
+            "form": [],
+            "text": "{\n  \"name\": null,\n  \"email\": null,\n  \"phone\": null,\n  \"role\": null,\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": null,\n  \"is_active\": null,\n  \"password\": null\n}",
+            "multipartForm": []
+          },
+          "pathVariables": [
+            {
+              "value": "string",
+              "id": 1,
+              "key": "member_id",
+              "description": "",
+              "dataType": "string"
+            }
+          ],
+          "body": "{\n  \"name\": null,\n  \"email\": null,\n  \"phone\": null,\n  \"role\": null,\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": null,\n  \"is_active\": null,\n  \"password\": null\n}",
+          "includeCredentials": false
+        },
+        "type": "http"
+      },
+      "type": "api"
+    },
+    {
+      "name": "magic-link",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {}
+      },
+      "id": "t6WMooaelAUFuksDlJiE",
+      "deleted": false,
+      "collectionId": "b9Nq7N2wJCqVsdoOIXPI",
+      "type": "collection",
+      "description": "Collection for /admin/members/{member_id}/magic-link endpoints"
+    },
+    {
+      "deleted": false,
+      "collectionId": "t6WMooaelAUFuksDlJiE",
+      "description": "",
+      "type": "api",
+      "isExample": false,
+      "id": "OWdUjYHKXehHW2dtqko0",
+      "data": {
+        "type": "http",
+        "request": {
+          "contentType": "text/plain",
+          "body": null,
+          "method": "POST",
+          "headers": [],
+          "bodyContainer": {
+            "form": [],
+            "text": "",
+            "multipartForm": []
+          },
+          "pathVariables": [
+            {
+              "id": 1,
+              "dataType": "string",
+              "value": "string",
+              "description": "",
+              "key": "member_id"
+            }
+          ],
+          "url": "{{base_url}}/admin/members/:member_id/magic-link",
+          "queryParams": [],
+          "includeCredentials": false
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "response": null
+      },
+      "name": "Send Magic Link"
+    },
+    {
+      "collectionId": "b9Nq7N2wJCqVsdoOIXPI",
+      "id": "7zD6K0M9CzWLavcVEBBK",
+      "type": "collection",
+      "name": "send-invite",
+      "description": "Collection for /admin/members/{member_id}/send-invite endpoints",
+      "deleted": false,
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      }
+    },
+    {
+      "description": "",
+      "data": {
+        "type": "http",
+        "request": {
+          "includeCredentials": false,
+          "url": "{{base_url}}/admin/members/:member_id/send-invite",
+          "headers": [],
+          "pathVariables": [
+            {
+              "id": 1,
+              "value": "string",
+              "description": "",
+              "key": "member_id",
+              "dataType": "string"
+            }
+          ],
+          "contentType": "text/plain",
+          "queryParams": [],
+          "method": "POST",
+          "bodyContainer": {
+            "multipartForm": [],
+            "form": [],
+            "text": ""
+          },
+          "body": null
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null,
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "collectionId": "7zD6K0M9CzWLavcVEBBK",
+      "id": "MDDkz04YtFAHHN24khpo",
+      "type": "api",
+      "isExample": false,
+      "deleted": false,
+      "name": "Send Member Invite"
+    },
+    {
+      "type": "collection",
+      "id": "HMnIMtXhkkmXfIrcyW1e",
+      "description": "Collection for /admin/members/invite endpoints",
+      "collectionId": "gk0gSeamFr0Cebxu5poI",
+      "name": "invite",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {}
+      }
+    },
+    {
+      "data": {
+        "type": "http",
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "request": {
+          "url": "{{base_url}}/admin/members/invite",
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "{\n  \"department_id\": \"\",\n  \"name\": \"\",\n  \"email\": \"\",\n  \"phone\": null,\n  \"role\": \"officer\",\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": 10,\n  \"send_invite\": true\n}",
+            "form": []
+          },
+          "queryParams": [],
+          "headers": [],
+          "contentType": "application/json",
+          "body": "{\n  \"department_id\": \"\",\n  \"name\": \"\",\n  \"email\": \"\",\n  \"phone\": null,\n  \"role\": \"officer\",\n  \"city\": null,\n  \"locality\": null,\n  \"max_workload\": 10,\n  \"send_invite\": true\n}",
+          "includeCredentials": false,
+          "method": "POST",
+          "pathVariables": []
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null
+      },
+      "deleted": false,
+      "id": "qnLViS8nEWZM47kCcpn7",
+      "description": "",
+      "collectionId": "HMnIMtXhkkmXfIrcyW1e",
+      "isExample": false,
+      "type": "api",
+      "name": "Invite Member"
+    },
+    {
+      "data": {
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "stats",
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "description": "Collection for /admin/stats endpoints",
+      "id": "ydN4S50FfDamuFKIogYx",
+      "type": "collection",
+      "deleted": false
+    },
+    {
+      "type": "api",
+      "name": "Get Admin Stats",
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{base_url}}/admin/stats",
+          "headers": [],
+          "body": null,
+          "pathVariables": [],
+          "bodyContainer": {
+            "text": "",
+            "form": [],
+            "multipartForm": []
+          },
+          "queryParams": [],
+          "method": "GET",
+          "includeCredentials": false,
+          "contentType": "text/plain"
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "isExample": false,
+      "deleted": false,
+      "collectionId": "ydN4S50FfDamuFKIogYx",
+      "id": "KLOqxpwgr1eA4JnRtNdu",
+      "description": ""
+    },
+    {
+      "data": {
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "escalations",
+      "description": "Collection for /admin/stats/escalations endpoints",
+      "deleted": false,
+      "id": "QO9jyqppqktJST9h3Orf",
+      "type": "collection",
+      "collectionId": "ydN4S50FfDamuFKIogYx"
+    },
+    {
+      "isExample": false,
+      "name": "Get Escalation Alerts",
+      "id": "m4cPE5MvMIQaae91Py5g",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "type": "http",
+        "request": {
+          "queryParams": [],
+          "method": "GET",
+          "includeCredentials": false,
+          "pathVariables": [],
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "contentType": "text/plain",
+          "headers": [],
+          "body": null,
+          "url": "{{base_url}}/admin/stats/escalations"
+        },
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "type": "api",
+      "collectionId": "QO9jyqppqktJST9h3Orf",
+      "description": "Returns a list of currently escalated issues with details.",
+      "deleted": false
+    },
+    {
+      "id": "XkRvBhS9J9hcL0wUrMRU",
+      "deleted": false,
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "type": "collection",
+      "name": "heatmap",
+      "collectionId": "ydN4S50FfDamuFKIogYx",
+      "description": "Collection for /admin/stats/heatmap endpoints"
+    },
+    {
+      "id": "zoCaWKXZIYlcNDFGVNfX",
+      "deleted": false,
+      "type": "api",
+      "isExample": false,
+      "description": "Returns city-aggregated issue counts for heatmap visualization.",
+      "name": "Get Issue Heatmap",
+      "data": {
+        "response": null,
+        "request": {
+          "queryParams": [],
+          "body": null,
+          "url": "{{base_url}}/admin/stats/heatmap",
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "includeCredentials": false,
+          "method": "GET",
+          "contentType": "text/plain",
+          "pathVariables": [],
+          "headers": []
+        },
+        "type": "http",
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "collectionId": "XkRvBhS9J9hcL0wUrMRU"
+    },
+    {
+      "name": "workers",
+      "deleted": false,
+      "description": "Collection for /admin/workers endpoints",
+      "collectionId": "5UtArI4mmQsrYqD5aTMQ",
+      "type": "collection",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {},
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "id": "PLGKLvmyw2TsXzntldEk"
+    },
+    {
+      "type": "collection",
+      "id": "XIi8UfiyodrKNRD8IRsJ",
+      "name": "performance",
+      "collectionId": "PLGKLvmyw2TsXzntldEk",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {},
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "description": "Collection for /admin/workers/performance endpoints",
+      "deleted": false
+    },
+    {
+      "deleted": false,
+      "id": "U0I0yYIHK3byo7euQtsr",
+      "data": {
+        "type": "http",
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "response": null,
+        "request": {
+          "pathVariables": [],
+          "queryParams": [
+            {
+              "dataType": "string",
+              "value": "string",
+              "id": 1,
+              "key": "department_id",
+              "isEnabled": true,
+              "description": ""
+            }
+          ],
+          "contentType": "text/plain",
+          "method": "GET",
+          "body": null,
+          "includeCredentials": false,
+          "headers": [],
+          "url": "{{base_url}}/admin/workers/performance",
+          "bodyContainer": {
+            "form": [],
+            "text": "",
+            "multipartForm": []
+          }
+        }
+      },
+      "description": "",
+      "isExample": false,
+      "collectionId": "XIi8UfiyodrKNRD8IRsJ",
+      "name": "Get Worker Performance",
+      "type": "api"
+    },
+    {
+      "id": "HKiIMCu79dfi1mvgcm8o",
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {}
+      },
+      "deleted": false,
+      "type": "collection",
+      "name": "dashboard",
+      "description": "Collection for /dashboard endpoints",
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q"
+    },
+    {
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "type": "http",
+        "request": {
+          "contentType": "text/plain",
+          "queryParams": [],
+          "method": "GET",
+          "includeCredentials": false,
+          "pathVariables": [],
+          "url": "{{base_url}}/dashboard",
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "body": null,
+          "headers": []
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "response": null
+      },
+      "isExample": false,
+      "deleted": false,
+      "name": "Dashboard",
+      "description": "",
+      "collectionId": "HKiIMCu79dfi1mvgcm8o",
+      "id": "F33DaewMKQiY6SInHwgF",
+      "type": "api"
+    },
+    {
+      "deleted": false,
+      "id": "6uGYbMmPfjNQ3lYxdFNF",
+      "type": "collection",
+      "description": "Collection for /flow endpoints",
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q",
+      "name": "flow",
+      "data": {
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      }
+    },
+    {
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {},
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "name": "events",
+      "description": "Collection for /flow/events endpoints",
+      "collectionId": "6uGYbMmPfjNQ3lYxdFNF",
+      "deleted": false,
+      "type": "collection",
+      "id": "4oCCUklCz3beloR1PGvn"
+    },
+    {
+      "type": "collection",
+      "description": "Collection for /flow/events/{issue_id} endpoints",
+      "collectionId": "4oCCUklCz3beloR1PGvn",
+      "name": "{issue_id}",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {}
+      },
+      "id": "QA3QYyh9KGHp9v4LrBzE",
+      "deleted": false
+    },
+    {
+      "data": {
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "type": "http",
+        "request": {
+          "headers": [],
+          "method": "GET",
+          "queryParams": [
+            {
+              "dataType": "integer",
+              "key": "limit",
+              "id": 2,
+              "value": "50",
+              "description": "",
+              "isEnabled": true
+            }
+          ],
+          "pathVariables": [
+            {
+              "key": "issue_id",
+              "value": "string",
+              "description": "",
+              "id": 1,
+              "dataType": "string"
+            }
+          ],
+          "contentType": "text/plain",
+          "url": "{{base_url}}/flow/events/:issue_id",
+          "includeCredentials": false,
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "body": null
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "collectionId": "QA3QYyh9KGHp9v4LrBzE",
+      "isExample": false,
+      "id": "RpYDvviWiNGN2BuId6Oa",
+      "name": "Get Issue Events",
+      "type": "api",
+      "deleted": false,
+      "description": ""
+    },
+    {
+      "description": "Collection for /flow/flow endpoints",
+      "collectionId": "6uGYbMmPfjNQ3lYxdFNF",
+      "deleted": false,
+      "name": "flow",
+      "id": "XGZjUCvCz3zn2ZNr8gSI",
+      "data": {
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "type": "collection"
+    },
+    {
+      "description": "Collection for /flow/flow/{issue_id} endpoints",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {}
+      },
+      "collectionId": "XGZjUCvCz3zn2ZNr8gSI",
+      "name": "{issue_id}",
+      "type": "collection",
+      "id": "oQlsSEDKSasZWx8TJGSk"
+    },
+    {
+      "deleted": false,
+      "description": "",
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "response": null,
+        "type": "http",
+        "request": {
+          "pathVariables": [
+            {
+              "key": "issue_id",
+              "description": "",
+              "id": 1,
+              "dataType": "string",
+              "value": "string"
+            }
+          ],
+          "body": null,
+          "headers": [],
+          "method": "GET",
+          "contentType": "text/plain",
+          "url": "{{base_url}}/flow/flow/:issue_id",
+          "bodyContainer": {
+            "text": "",
+            "form": [],
+            "multipartForm": []
+          },
+          "includeCredentials": false,
+          "queryParams": []
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "isExample": false,
+      "id": "A9izObJds9zVcZGROAlM",
+      "type": "api",
+      "name": "Stream Agent Flow",
+      "collectionId": "oQlsSEDKSasZWx8TJGSk"
+    },
+    {
+      "type": "collection",
+      "deleted": false,
+      "name": "active",
+      "id": "Uewnhj2mMgb0E6xEYzHa",
+      "description": "Collection for /flow/flow/active endpoints",
+      "collectionId": "XGZjUCvCz3zn2ZNr8gSI",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      }
+    },
+    {
+      "collectionId": "Uewnhj2mMgb0E6xEYzHa",
+      "deleted": false,
+      "isExample": false,
+      "data": {
+        "request": {
+          "body": null,
+          "queryParams": [],
+          "includeCredentials": false,
+          "headers": [],
+          "pathVariables": [],
+          "url": "{{base_url}}/flow/flow/active",
+          "bodyContainer": {
+            "multipartForm": [],
+            "form": [],
+            "text": ""
+          },
+          "contentType": "text/plain",
+          "method": "GET"
+        },
+        "response": null,
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "type": "http"
+      },
+      "description": "",
+      "type": "api",
+      "name": "List Active Flows",
+      "id": "iLB8sZntnXOa2lqcKHzL"
+    },
+    {
+      "name": "timeline",
+      "type": "collection",
+      "deleted": false,
+      "id": "5iHZeb81JQQQM0T8p575",
+      "collectionId": "6uGYbMmPfjNQ3lYxdFNF",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "description": "Collection for /flow/timeline endpoints"
+    },
+    {
+      "collectionId": "5iHZeb81JQQQM0T8p575",
+      "name": "{issue_id}",
+      "type": "collection",
+      "description": "Collection for /flow/timeline/{issue_id} endpoints",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {}
+      },
+      "id": "Vtd9Zp7SLq9wxnLGdjFv",
+      "deleted": false
+    },
+    {
+      "name": "Get Issue Timeline",
+      "collectionId": "Vtd9Zp7SLq9wxnLGdjFv",
+      "id": "uF1fxa6jPxALRszl5l3v",
+      "data": {
+        "type": "http",
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "response": null,
+        "request": {
+          "contentType": "text/plain",
+          "pathVariables": [
+            {
+              "value": "string",
+              "key": "issue_id",
+              "id": 1,
+              "description": "",
+              "dataType": "string"
+            }
+          ],
+          "bodyContainer": {
+            "text": "",
+            "multipartForm": [],
+            "form": []
+          },
+          "body": null,
+          "queryParams": [],
+          "url": "{{base_url}}/flow/timeline/:issue_id",
+          "headers": [],
+          "method": "GET",
+          "includeCredentials": false
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "description": "",
+      "type": "api",
+      "isExample": false,
+      "deleted": false
+    },
+    {
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "health",
+      "id": "e2jPjo1K7zMFszXbSYKD",
+      "type": "collection",
+      "description": "Collection for /health endpoints",
+      "deleted": false,
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q"
+    },
+    {
+      "collectionId": "e2jPjo1K7zMFszXbSYKD",
+      "deleted": false,
+      "type": "collection",
+      "id": "ckhC1in47JJ2hoyE6alz",
+      "name": "health",
+      "description": "Collection for /health/health endpoints",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "variables": {}
+      }
+    },
+    {
+      "id": "eXrync6KAQgAsnOv4Cmg",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "request": {
+          "queryParams": [],
+          "headers": [],
+          "includeCredentials": false,
+          "body": null,
+          "pathVariables": [],
+          "contentType": "text/plain",
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "method": "GET",
+          "url": "{{base_url}}/health/health"
+        },
+        "response": null,
+        "type": "http"
+      },
+      "name": "Health Check",
+      "type": "api",
+      "deleted": false,
+      "description": "",
+      "collectionId": "ckhC1in47JJ2hoyE6alz",
+      "isExample": false
+    },
+    {
+      "name": "db",
+      "id": "tAJyp2skKU39vfdX4wxs",
+      "type": "collection",
+      "collectionId": "ckhC1in47JJ2hoyE6alz",
+      "description": "Collection for /health/health/db endpoints",
+      "data": {
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "deleted": false
+    },
+    {
+      "name": "Db Health Check",
+      "data": {
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "type": "http",
+        "request": {
+          "bodyContainer": {
+            "multipartForm": [],
+            "form": [],
+            "text": ""
+          },
+          "body": null,
+          "headers": [],
+          "pathVariables": [],
+          "contentType": "text/plain",
+          "url": "{{base_url}}/health/health/db",
+          "queryParams": [],
+          "includeCredentials": false,
+          "method": "GET"
+        }
+      },
+      "deleted": false,
+      "collectionId": "tAJyp2skKU39vfdX4wxs",
+      "isExample": false,
+      "id": "rONBaEYUZGV7jvVRcpgl",
+      "description": "",
+      "type": "api"
+    },
+    {
+      "name": "issues",
+      "id": "s5YoYAdl4IACsnmNU3nX",
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {},
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        }
+      },
+      "description": "Collection for /issues endpoints",
+      "type": "collection"
+    },
+    {
+      "id": "UxRqW1ytmZsKW3HMOsqj",
+      "type": "api",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null,
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "type": "http",
+        "request": {
+          "url": "{{base_url}}/issues",
+          "headers": [],
+          "body": [
+            {
+              "isEnabled": true,
+              "value": "",
+              "key": "images",
+              "id": 1
+            },
+            {
+              "key": "description",
+              "id": 2,
+              "value": "",
+              "isEnabled": true
+            },
+            {
+              "key": "latitude",
+              "id": 3,
+              "value": "",
+              "isEnabled": true
+            },
+            {
+              "isEnabled": true,
+              "id": 4,
+              "value": "",
+              "key": "longitude"
+            },
+            {
+              "isEnabled": true,
+              "id": 5,
+              "value": "",
+              "key": "accuracy_meters"
+            },
+            {
+              "id": 6,
+              "isEnabled": true,
+              "value": "",
+              "key": "platform"
+            },
+            {
+              "value": "",
+              "key": "device_model",
+              "isEnabled": true,
+              "id": 7
+            },
+            {
+              "isEnabled": true,
+              "key": "authorization",
+              "value": "",
+              "id": 8
+            }
+          ],
+          "pathVariables": [],
+          "queryParams": [],
+          "bodyContainer": {
+            "multipartForm": [
+              {
+                "value": "",
+                "key": "images",
+                "isEnabled": true,
+                "id": 1
+              },
+              {
+                "id": 2,
+                "value": "",
+                "isEnabled": true,
+                "key": "description"
+              },
+              {
+                "id": 3,
+                "value": "",
+                "key": "latitude",
+                "isEnabled": true
+              },
+              {
+                "id": 4,
+                "key": "longitude",
+                "isEnabled": true,
+                "value": ""
+              },
+              {
+                "isEnabled": true,
+                "id": 5,
+                "value": "",
+                "key": "accuracy_meters"
+              },
+              {
+                "key": "platform",
+                "isEnabled": true,
+                "id": 6,
+                "value": ""
+              },
+              {
+                "isEnabled": true,
+                "value": "",
+                "id": 7,
+                "key": "device_model"
+              },
+              {
+                "key": "authorization",
+                "value": "",
+                "isEnabled": true,
+                "id": 8
+              }
+            ],
+            "form": [],
+            "text": ""
+          },
+          "method": "POST",
+          "includeCredentials": false,
+          "contentType": "multipart/form-data"
+        }
+      },
+      "deleted": false,
+      "description": "",
+      "isExample": false,
+      "name": "Create Issue",
+      "collectionId": "s5YoYAdl4IACsnmNU3nX"
+    },
+    {
+      "deleted": false,
+      "collectionId": "s5YoYAdl4IACsnmNU3nX",
+      "type": "api",
+      "description": "",
+      "name": "List Issues",
+      "isExample": false,
+      "data": {
+        "type": "http",
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "response": null,
+        "request": {
+          "pathVariables": [],
+          "method": "GET",
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "headers": [],
+          "url": "{{base_url}}/issues",
+          "body": null,
+          "queryParams": [
+            {
+              "value": "1",
+              "id": 1,
+              "dataType": "integer",
+              "key": "page",
+              "isEnabled": true,
+              "description": ""
+            },
+            {
+              "value": "20",
+              "isEnabled": true,
+              "description": "",
+              "id": 2,
+              "dataType": "integer",
+              "key": "page_size"
+            },
+            {
+              "value": "string",
+              "description": "",
+              "key": "state",
+              "dataType": "string",
+              "isEnabled": true,
+              "id": 3
+            },
+            {
+              "id": 4,
+              "description": "",
+              "value": "string",
+              "isEnabled": true,
+              "key": "priority",
+              "dataType": "string"
+            },
+            {
+              "isEnabled": true,
+              "key": "department_id",
+              "description": "",
+              "value": "string",
+              "dataType": "string",
+              "id": 5
+            },
+            {
+              "description": "",
+              "isEnabled": true,
+              "key": "is_duplicate",
+              "dataType": "string",
+              "id": 6,
+              "value": "string"
+            },
+            {
+              "id": 7,
+              "key": "user_id",
+              "description": "",
+              "value": "string",
+              "dataType": "string",
+              "isEnabled": true
+            }
+          ],
+          "includeCredentials": false,
+          "contentType": "text/plain"
+        }
+      },
+      "id": "vF7gwxExfmRLKjdK6OZO"
+    },
+    {
+      "description": "Collection for /issues/{issue_id} endpoints",
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {}
+      },
+      "type": "collection",
+      "name": "{issue_id}",
+      "collectionId": "s5YoYAdl4IACsnmNU3nX",
+      "id": "KdUlTBklxPP4uzopMMfi",
+      "deleted": false
+    },
+    {
+      "description": "",
+      "name": "Get Issue",
+      "collectionId": "KdUlTBklxPP4uzopMMfi",
+      "isExample": false,
+      "deleted": false,
+      "id": "54Ii3DmsjN8kViPzh8Cn",
+      "type": "api",
+      "data": {
+        "response": null,
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "type": "http",
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "request": {
+          "includeCredentials": false,
+          "method": "GET",
+          "bodyContainer": {
+            "text": "",
+            "form": [],
+            "multipartForm": []
+          },
+          "headers": [],
+          "url": "{{base_url}}/issues/:issue_id",
+          "pathVariables": [
+            {
+              "key": "issue_id",
+              "description": "",
+              "value": "string",
+              "dataType": "string",
+              "id": 1
+            }
+          ],
+          "body": null,
+          "queryParams": [],
+          "contentType": "text/plain"
+        }
+      }
+    },
+    {
+      "deleted": false,
+      "type": "collection",
+      "description": "Collection for /issues/{issue_id}/confirm endpoints",
+      "name": "confirm",
+      "collectionId": "KdUlTBklxPP4uzopMMfi",
+      "data": {
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "id": "ThariFn03ZWXnOFLg8fH"
+    },
+    {
+      "id": "wmMtrq9oIpotnIrRbkh1",
+      "name": "Confirm Issue",
+      "type": "api",
+      "data": {
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "response": null,
+        "type": "http",
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "request": {
+          "headers": [],
+          "contentType": "application/json",
+          "bodyContainer": {
+            "text": "{\n  \"confirmed\": false\n}",
+            "form": [],
+            "multipartForm": []
+          },
+          "queryParams": [],
+          "includeCredentials": false,
+          "body": "{\n  \"confirmed\": false\n}",
+          "url": "{{base_url}}/issues/:issue_id/confirm",
+          "method": "POST",
+          "pathVariables": [
+            {
+              "description": "",
+              "key": "issue_id",
+              "id": 1,
+              "value": "string",
+              "dataType": "string"
+            }
+          ]
+        }
+      },
+      "description": "",
+      "deleted": false,
+      "isExample": false,
+      "collectionId": "ThariFn03ZWXnOFLg8fH"
+    },
+    {
+      "deleted": false,
+      "description": "Collection for /issues/{issue_id}/process endpoints",
+      "name": "process",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "variables": {}
+      },
+      "collectionId": "KdUlTBklxPP4uzopMMfi",
+      "id": "ARxMYGPTmIr70ilomOpT",
+      "type": "collection"
+    },
+    {
+      "data": {
+        "response": null,
+        "request": {
+          "headers": [],
+          "bodyContainer": {
+            "form": [],
+            "multipartForm": [],
+            "text": ""
+          },
+          "body": null,
+          "includeCredentials": false,
+          "pathVariables": [
+            {
+              "id": 1,
+              "value": "string",
+              "description": "",
+              "key": "issue_id",
+              "dataType": "string"
+            }
+          ],
+          "contentType": "text/plain",
+          "url": "{{base_url}}/issues/:issue_id/process",
+          "method": "POST",
+          "queryParams": []
+        },
+        "type": "http",
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "collectionId": "ARxMYGPTmIr70ilomOpT",
+      "name": "Process Issue Pipeline",
+      "description": "",
+      "deleted": false,
+      "type": "api",
+      "isExample": false,
+      "id": "LViQOTz0aGGtydDrvLWq"
+    },
+    {
+      "type": "collection",
+      "description": "Collection for /issues/{issue_id}/resolve endpoints",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {},
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "deleted": false,
+      "id": "u7QsreEXx8a6OR8W8VUT",
+      "name": "resolve",
+      "collectionId": "KdUlTBklxPP4uzopMMfi"
+    },
+    {
+      "type": "api",
+      "name": "Resolve Issue",
+      "isExample": false,
+      "description": "",
+      "id": "nmBClJy1BEly75ogd3CX",
+      "data": {
+        "request": {
+          "body": [
+            {
+              "value": "",
+              "isEnabled": true,
+              "id": 1,
+              "key": "resolution_notes"
+            }
+          ],
+          "pathVariables": [
+            {
+              "key": "issue_id",
+              "id": 1,
+              "description": "",
+              "dataType": "string",
+              "value": "string"
+            }
+          ],
+          "contentType": "application/x-www-form-urlencoded",
+          "headers": [],
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "",
+            "form": [
+              {
+                "key": "resolution_notes",
+                "id": 1,
+                "isEnabled": true,
+                "value": ""
+              }
+            ]
+          },
+          "includeCredentials": false,
+          "method": "PATCH",
+          "url": "{{base_url}}/issues/:issue_id/resolve",
+          "queryParams": []
+        },
+        "type": "http",
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "response": null,
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "deleted": false,
+      "collectionId": "u7QsreEXx8a6OR8W8VUT"
+    },
+    {
+      "collectionId": "s5YoYAdl4IACsnmNU3nX",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "variables": {}
+      },
+      "name": "stream",
+      "description": "Collection for /issues/stream endpoints",
+      "type": "collection",
+      "id": "y8ytSFCxAbblitESD5wh",
+      "deleted": false
+    },
+    {
+      "description": "",
+      "type": "api",
+      "id": "jJ0x5gvmb0lbREnaGVYi",
+      "collectionId": "y8ytSFCxAbblitESD5wh",
+      "isExample": false,
+      "deleted": false,
+      "data": {
+        "request": {
+          "queryParams": [],
+          "method": "POST",
+          "body": [
+            {
+              "isEnabled": true,
+              "value": "",
+              "id": 1,
+              "key": "images"
+            },
+            {
+              "value": "",
+              "key": "description",
+              "id": 2,
+              "isEnabled": true
+            },
+            {
+              "id": 3,
+              "key": "latitude",
+              "isEnabled": true,
+              "value": ""
+            },
+            {
+              "isEnabled": true,
+              "key": "longitude",
+              "id": 4,
+              "value": ""
+            },
+            {
+              "isEnabled": true,
+              "id": 5,
+              "value": "",
+              "key": "accuracy_meters"
+            },
+            {
+              "isEnabled": true,
+              "id": 6,
+              "key": "platform",
+              "value": ""
+            },
+            {
+              "isEnabled": true,
+              "key": "device_model",
+              "id": 7,
+              "value": ""
+            },
+            {
+              "value": "",
+              "key": "authorization",
+              "isEnabled": true,
+              "id": 8
+            }
+          ],
+          "contentType": "multipart/form-data",
+          "includeCredentials": false,
+          "headers": [],
+          "pathVariables": [],
+          "url": "{{base_url}}/issues/stream",
+          "bodyContainer": {
+            "form": [],
+            "text": "",
+            "multipartForm": [
+              {
+                "id": 1,
+                "value": "",
+                "isEnabled": true,
+                "key": "images"
+              },
+              {
+                "value": "",
+                "key": "description",
+                "isEnabled": true,
+                "id": 2
+              },
+              {
+                "id": 3,
+                "isEnabled": true,
+                "key": "latitude",
+                "value": ""
+              },
+              {
+                "id": 4,
+                "key": "longitude",
+                "isEnabled": true,
+                "value": ""
+              },
+              {
+                "value": "",
+                "id": 5,
+                "isEnabled": true,
+                "key": "accuracy_meters"
+              },
+              {
+                "isEnabled": true,
+                "id": 6,
+                "key": "platform",
+                "value": ""
+              },
+              {
+                "isEnabled": true,
+                "id": 7,
+                "key": "device_model",
+                "value": ""
+              },
+              {
+                "value": "",
+                "isEnabled": true,
+                "key": "authorization",
+                "id": 8
+              }
+            ]
+          }
+        },
+        "type": "http",
+        "response": null,
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        }
+      },
+      "name": "Create Issue With Stream"
+    },
+    {
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "collectionId": "0YSnx2d0m0oc3jGfZP9Q",
+      "id": "U4vtjLyHBWBxknz97Tey",
+      "description": "Collection for /worker endpoints",
+      "type": "collection",
+      "deleted": false,
+      "name": "worker"
+    },
+    {
+      "type": "collection",
+      "data": {
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {}
+      },
+      "id": "jyatoVohMZeuCQA2F4zm",
+      "description": "Collection for /worker/tasks endpoints",
+      "collectionId": "U4vtjLyHBWBxknz97Tey",
+      "deleted": false,
+      "name": "tasks"
+    },
+    {
+      "data": {
+        "type": "http",
+        "request": {
+          "queryParams": [],
+          "url": "{{base_url}}/worker/tasks",
+          "pathVariables": [],
+          "bodyContainer": {
+            "multipartForm": [],
+            "text": "",
+            "form": []
+          },
+          "body": null,
+          "headers": [],
+          "includeCredentials": false,
+          "method": "GET",
+          "contentType": "text/plain"
+        },
+        "response": null,
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        }
+      },
+      "name": "Get Worker Tasks",
+      "description": "",
+      "isExample": false,
+      "id": "U3RtJI8GeBqKY32oYrcn",
+      "collectionId": "jyatoVohMZeuCQA2F4zm",
+      "type": "api",
+      "deleted": false
+    },
+    {
+      "deleted": false,
+      "type": "collection",
+      "description": "Collection for /worker/tasks/{task_id} endpoints",
+      "collectionId": "jyatoVohMZeuCQA2F4zm",
+      "data": {
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "variables": {},
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "id": "FqJnf7rMuN2NKQT1BbG9",
+      "name": "{task_id}"
+    },
+    {
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "type": "http",
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "request": {
+          "url": "{{base_url}}/worker/tasks/:task_id",
+          "body": null,
+          "pathVariables": [
+            {
+              "id": 1,
+              "value": "string",
+              "key": "task_id",
+              "dataType": "string",
+              "description": ""
+            }
+          ],
+          "method": "GET",
+          "queryParams": [],
+          "contentType": "text/plain",
+          "headers": [],
+          "includeCredentials": false,
+          "bodyContainer": {
+            "multipartForm": [],
+            "form": [],
+            "text": ""
+          }
+        },
+        "response": null
+      },
+      "id": "9DE01eKroUuYqHx7AYV7",
+      "deleted": false,
+      "type": "api",
+      "description": "",
+      "collectionId": "FqJnf7rMuN2NKQT1BbG9",
+      "isExample": false,
+      "name": "Get Task Detail"
+    },
+    {
+      "description": "Collection for /worker/tasks/{task_id}/complete endpoints",
+      "type": "collection",
+      "id": "l4nkrrmiN7ikqmhRuWMl",
+      "collectionId": "FqJnf7rMuN2NKQT1BbG9",
+      "name": "complete",
+      "data": {
+        "variables": {},
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        }
+      },
+      "deleted": false
+    },
+    {
+      "isExample": false,
+      "data": {
+        "response": null,
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "request": {
+          "url": "{{base_url}}/worker/tasks/:task_id/complete",
+          "contentType": "multipart/form-data",
+          "method": "POST",
+          "headers": [],
+          "bodyContainer": {
+            "text": "",
+            "form": [],
+            "multipartForm": [
+              {
+                "key": "notes",
+                "value": "",
+                "id": 1,
+                "isEnabled": true
+              },
+              {
+                "isEnabled": true,
+                "value": "",
+                "id": 2,
+                "key": "proof_image"
+              }
+            ]
+          },
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "description": "",
+              "dataType": "string",
+              "id": 1,
+              "value": "string",
+              "key": "task_id"
+            }
+          ],
+          "body": [
+            {
+              "isEnabled": true,
+              "id": 1,
+              "key": "notes",
+              "value": ""
+            },
+            {
+              "isEnabled": true,
+              "value": "",
+              "id": 2,
+              "key": "proof_image"
+            }
+          ],
+          "includeCredentials": false
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "type": "http"
+      },
+      "name": "Complete Task",
+      "deleted": false,
+      "description": "",
+      "collectionId": "l4nkrrmiN7ikqmhRuWMl",
+      "id": "VgKPBD6rIlumMUO13Mjk",
+      "type": "api"
+    },
+    {
+      "type": "collection",
+      "deleted": false,
+      "collectionId": "FqJnf7rMuN2NKQT1BbG9",
+      "name": "start",
+      "id": "DBOiMAodCqWcALyN6QoP",
+      "description": "Collection for /worker/tasks/{task_id}/start endpoints",
+      "data": {
+        "auth": {
+          "currentAuthType": "INHERIT",
+          "authConfigStore": {}
+        },
+        "scripts": {
+          "preRequest": "",
+          "postResponse": ""
+        },
+        "variables": {}
+      }
+    },
+    {
+      "data": {
+        "type": "http",
+        "auth": {
+          "authConfigStore": {},
+          "currentAuthType": "INHERIT"
+        },
+        "scripts": {
+          "postResponse": "",
+          "preRequest": ""
+        },
+        "request": {
+          "contentType": "text/plain",
+          "body": null,
+          "bodyContainer": {
+            "form": [],
+            "text": "",
+            "multipartForm": []
+          },
+          "includeCredentials": false,
+          "method": "POST",
+          "url": "{{base_url}}/worker/tasks/:task_id/start",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "value": "string",
+              "key": "task_id",
+              "id": 1,
+              "description": "",
+              "dataType": "string"
+            }
+          ]
+        },
+        "response": null
+      },
+      "name": "Start Task",
+      "deleted": false,
+      "description": "",
+      "type": "api",
+      "id": "ksikXET0REj19zODZL7y",
+      "isExample": false,
+      "collectionId": "DBOiMAodCqWcALyN6QoP"
+    }
+  ]
+}

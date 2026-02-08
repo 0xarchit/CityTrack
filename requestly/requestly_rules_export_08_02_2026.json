@@ -1,0 +1,416 @@
+[
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/departments - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_w05rc",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/departments",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "xappu",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "[{\"id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Public Works Department\",\"code\":\"PWD\",\"description\":\"Roads, Potholes, Infrastructure\",\"categories\":\"Roads, Potholes, Infrastructure\",\"default_sla_hours\":48,\"escalation_email\":\"zrxarchit+pwd_head@gmail.com\",\"is_active\":true,\"member_count\":10},{\"id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Sanitation Department\",\"code\":\"SD\",\"description\":\"Garbage, Cleaning, Waste\",\"categories\":\"Garbage, Cleaning, Waste\",\"default_sla_hours\":24,\"escalation_email\":\"zrxarchit+sanitation_head@gmail.com\",\"is_active\":true,\"member_count\":10},{\"id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Traffic Department\",\"code\":\"TD\",\"description\":\"Signals, Signs, Illegal Parking\",\"categories\":\"Signals, Signs, Illegal Parking\",\"default_sla_hours\":8,\"escalation_email\":\"zrxarchit+traffic_head@gmail.com\",\"is_active\":true,\"member_count\":10}]"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/departments"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/departments - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_o3s3f",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/departments",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "9il8d",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "[{\"id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Public Works Department\",\"code\":\"PWD\",\"description\":\"Roads, Potholes, Infrastructure\",\"categories\":\"Roads, Potholes, Infrastructure\",\"default_sla_hours\":48,\"escalation_email\":\"zrxarchit+pwd_head@gmail.com\",\"is_active\":true,\"member_count\":10},{\"id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Sanitation Department\",\"code\":\"SD\",\"description\":\"Garbage, Cleaning, Waste\",\"categories\":\"Garbage, Cleaning, Waste\",\"default_sla_hours\":24,\"escalation_email\":\"zrxarchit+sanitation_head@gmail.com\",\"is_active\":true,\"member_count\":10},{\"id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Traffic Department\",\"code\":\"TD\",\"description\":\"Signals, Signs, Illegal Parking\",\"categories\":\"Signals, Signs, Illegal Parking\",\"default_sla_hours\":8,\"escalation_email\":\"zrxarchit+traffic_head@gmail.com\",\"is_active\":true,\"member_count\":10}]"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/departments"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/issues?page=1&limit=10&sort_by=created_at&sort_order=desc - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_pgcx7",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/issues?page=1&limit=10&sort_by=created_at&sort_order=desc",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "62tp0",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"items\":[{\"id\":\"9f1bcc4d-f1c5-48d9-b883-0933f0f6d60a\",\"description\":\"Electrical wires\",\"state\":\"rejected\",\"priority\":null,\"city\":null,\"created_at\":\"2026-02-07T23:18:09.644661\",\"updated_at\":\"2026-02-07T23:18:33.375309\",\"department\":null,\"assigned_to\":null,\"category\":\"Damaged Electric Wires and Poles\",\"sla_deadline\":null,\"thumbnail\":\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/9f1bcc4d-f1c5-48d9-b883-0933f0f6d60a/7b5ac9e7ffe04a8f93b01528ad6a4df8.jpg\"},{\"id\":\"5d27a545-f176-4172-a029-b2674dd77bfe\",\"description\":\"Garbage near market road\",\"state\":\"resolved\",\"priority\":3,\"city\":null,\"created_at\":\"2026-02-07T23:15:13.051735\",\"updated_at\":\"2026-02-07T23:19:33.108260\",\"department\":\"Sanitation Department\",\"assigned_to\":\"Suresh Singh\",\"category\":\"Littering/Garbage on Public Places\",\"sla_deadline\":\"2026-02-08T23:15:39.613746\",\"thumbnail\":\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/dc4446d2c719424ab40e14f1d727f375.jpg\"},{\"id\":\"2da94bc6-a9b1-45ea-8800-7b2215432914\",\"description\":\"broken tree\",\"state\":\"escalated\",\"priority\":2,\"city\":\"New Delhi\",\"created_at\":\"2026-02-07T17:21:37.783965\",\"updated_at\":\"2026-02-08T03:12:03.916183\",\"department\":null,\"assigned_to\":null,\"category\":\"Fallen Trees\",\"sla_deadline\":\"2026-02-08T05:21:52.551991\",\"thumbnail\":\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/2da94bc6-a9b1-45ea-8800-7b2215432914/84e4e17e9ca74bb291c0effab239e36d.jpg\"}],\"total\":3,\"page\":1,\"limit\":10,\"pages\":1}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/issues?page=1&limit=10&sort_by=created_at&sort_order=desc"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/members - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_8evvr",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/members",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "wgilh",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "[{\"id\":\"50b62732-489c-4b28-b642-0c08e0980722\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Ajay Kumar\",\"email\":\"zrxarchit+ajay.kumar.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Baddi\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"c98da7cc-068a-469e-b0d1-b4d747fc1c97\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Amit Patel\",\"email\":\"zrxarchit+amit.patel.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kalka\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"acbc609e-221f-4002-a3a1-45f17c652ed9\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Anil Kumar\",\"email\":\"zrxarchit+anil.kumar.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Haroli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"8aa93398-72dc-4d2d-9df5-bf85acf8574b\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Anita Devi\",\"email\":\"zrxarchit+anita.devi.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kasauli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"96a1ed14-bbc7-48e9-bcd7-568f42a1b249\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Arjun Verma\",\"email\":\"zrxarchit+arjun.verma.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Parwanoo\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"11a248bd-527b-4b21-bb4b-2d3c89fd1606\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Asha Sharma\",\"email\":\"zrxarchit+asha.sharma.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Baddi\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"8f23c2a4-c547-47fe-bf1f-61f1457ff386\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Bhavna Singh\",\"email\":\"zrxarchit+bhavna.singh.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Amb\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"b0d306bf-8762-4c69-806f-59af83bbeac4\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Deepak Yadav\",\"email\":\"zrxarchit+deepak.yadav.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kalka\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"a0a2a306-e2c3-4ebf-8153-b30bd2528342\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Dinesh Kumar\",\"email\":\"zrxarchit+dinesh.kumar.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Solan\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"3a4a698b-7898-4c54-b079-9fb2c14192e5\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Harish Patel\",\"email\":\"zrxarchit+harish.patel.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Amb\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"3ac735fd-eafe-4e62-8366-ea2c7cc39f82\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Kavya Reddy\",\"email\":\"zrxarchit+kavya.reddy.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Parwanoo\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"e3dcd976-bfd2-473f-8bdb-98eed7b778d6\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Manoj Singh\",\"email\":\"zrxarchit+manoj.singh.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Solan\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"7441e530-fd14-4d13-a8f1-86f20ce0a519\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Meera Patel\",\"email\":\"zrxarchit+meera.patel.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Solan\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"90bb6682-a1ad-4dab-a788-b5aa6813f98f\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Mohan Lal\",\"email\":\"zrxarchit+mohan.lal.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Haroli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"581647e7-feb7-44d7-b09e-cf44c56b6ffe\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Neha Verma\",\"email\":\"zrxarchit+neha.verma.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kalka\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"9dc0cf86-b51f-490a-bd8a-dd362984f7c2\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Nitin Patel\",\"email\":\"zrxarchit+nitin.patel.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kasauli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"0a4088e3-93a5-48c6-af55-df32b5ba7859\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Pooja Kumari\",\"email\":\"zrxarchit+pooja.kumari.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kurali\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"6e616637-24b1-492a-960b-775790678849\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Priya Sharma\",\"email\":\"zrxarchit+priya.sharma.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Una\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"db38ff2d-c49d-4ce8-9d2b-5b0441bb2ce9\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Priya Singh\",\"email\":\"zrxarchit+priya.singh.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Nalagarh\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"e4b999d7-9f4f-4381-bdf5-9d3ce197abe9\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Rajesh Tiwari\",\"email\":\"zrxarchit+rajesh.tiwari.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Nalagarh\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"11829a66-da29-4db8-bba3-bd7357a9b86c\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Ramesh Kumar\",\"email\":\"zrxarchit+ramesh.kumar.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Una\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"85284623-c471-4053-9de8-1d303b4054a5\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Ravi Kumar\",\"email\":\"zrxarchit+ravi.kumar.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Amb\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"4aae6bfb-550b-4c1b-b63e-25ed78752f68\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Rohit Sharma\",\"email\":\"zrxarchit+rohit.sharma.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Nalagarh\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"265c0a8d-deb6-4e27-a6ae-3c93a77b7c11\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Sachin Singh\",\"email\":\"zrxarchit+sachin.singh.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Parwanoo\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"064330e9-e666-4e27-ac27-e30c094ffa06\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Sandeep Gupta\",\"email\":\"zrxarchit+sandeep.gupta.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kurali\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"8050646f-8fd4-46e2-9602-6330f7507672\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Sanjay Verma\",\"email\":\"zrxarchit+sanjay.verma.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Baddi\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"1c1c9a19-e498-409e-b085-f5044a22cbad\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Sukesh Singh\",\"email\":\"zrxarchit+sukesh.singh.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Haroli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"f4afdfd4-ac38-4166-98a1-0e5d000dc5e2\",\"department_id\":\"1c5dbb9e-f794-48aa-80b1-509d3b84e3f3\",\"name\":\"Suresh Singh\",\"email\":\"zrxarchit+suresh.singh.sanitation@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Una\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"43fab96b-5e6f-4b24-98d7-955cd42a9309\",\"department_id\":\"581127ea-4984-4342-abc8-44345b5b15bc\",\"name\":\"Vikram Sharma\",\"email\":\"zrxarchit+vikram.sharma.pwd@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kasauli\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"2909f4ad-0e8b-4d44-a7d1-2b0b4cedd724\",\"department_id\":\"4845a1bc-f94a-4de0-8702-09912693c711\",\"name\":\"Vishal Reddy\",\"email\":\"zrxarchit+vishal.reddy.traffic@gmail.com\",\"phone\":null,\"role\":\"worker\",\"city\":\"Himachal Pradesh\",\"locality\":\"Kurali\",\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null},{\"id\":\"60658280-f609-45db-b893-4967e99707e2\",\"department_id\":null,\"name\":\"zrxArchit\",\"email\":\"zrxarchit@gmail.com\",\"phone\":null,\"role\":\"admin\",\"city\":null,\"locality\":null,\"is_active\":true,\"current_workload\":0,\"max_workload\":10,\"invite_status\":null}]"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/members"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716144,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/stats - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_5ugzb",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/stats",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "5ma99",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"departments\":3,\"members\":31,\"total_issues\":3,\"pending_issues\":0,\"resolved_issues\":1,\"verification_needed\":0,\"issues_by_category\":[{\"name\":\"Damaged Electric Wires and Poles\",\"value\":1},{\"name\":\"Fallen Trees\",\"value\":1},{\"name\":\"Littering/Garbage on Public Places\",\"value\":1}],\"issues_activity\":[{\"name\":\"Mon\",\"reported\":0,\"resolved\":0},{\"name\":\"Tue\",\"reported\":0,\"resolved\":0},{\"name\":\"Wed\",\"reported\":0,\"resolved\":0},{\"name\":\"Thu\",\"reported\":0,\"resolved\":0},{\"name\":\"Fri\",\"reported\":0,\"resolved\":0},{\"name\":\"Sat\",\"reported\":3,\"resolved\":1},{\"name\":\"Sun\",\"reported\":0,\"resolved\":0}]}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/stats"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/stats/heatmap - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_dna4m",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/stats/heatmap",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "8wyed",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "[{\"city\":\"New Delhi\",\"count\":1,\"priority_avg\":2.0}]"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/stats/heatmap"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/admin/workers/performance - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_f2oy7",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/admin/workers/performance",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "3fzbj",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "[{\"id\":\"96a1ed14-bbc7-48e9-bcd7-568f42a1b249\",\"name\":\"Arjun Verma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"b0d306bf-8762-4c69-806f-59af83bbeac4\",\"name\":\"Deepak Yadav\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"064330e9-e666-4e27-ac27-e30c094ffa06\",\"name\":\"Sandeep Gupta\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"90bb6682-a1ad-4dab-a788-b5aa6813f98f\",\"name\":\"Mohan Lal\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"85284623-c471-4053-9de8-1d303b4054a5\",\"name\":\"Ravi Kumar\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"11829a66-da29-4db8-bba3-bd7357a9b86c\",\"name\":\"Ramesh Kumar\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"1c1c9a19-e498-409e-b085-f5044a22cbad\",\"name\":\"Sukesh Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"3a4a698b-7898-4c54-b079-9fb2c14192e5\",\"name\":\"Harish Patel\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"43fab96b-5e6f-4b24-98d7-955cd42a9309\",\"name\":\"Vikram Sharma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"50b62732-489c-4b28-b642-0c08e0980722\",\"name\":\"Ajay Kumar\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"8aa93398-72dc-4d2d-9df5-bf85acf8574b\",\"name\":\"Anita Devi\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"11a248bd-527b-4b21-bb4b-2d3c89fd1606\",\"name\":\"Asha Sharma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"e4b999d7-9f4f-4381-bdf5-9d3ce197abe9\",\"name\":\"Rajesh Tiwari\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"e3dcd976-bfd2-473f-8bdb-98eed7b778d6\",\"name\":\"Manoj Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"db38ff2d-c49d-4ce8-9d2b-5b0441bb2ce9\",\"name\":\"Priya Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"7441e530-fd14-4d13-a8f1-86f20ce0a519\",\"name\":\"Meera Patel\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"3ac735fd-eafe-4e62-8366-ea2c7cc39f82\",\"name\":\"Kavya Reddy\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"581647e7-feb7-44d7-b09e-cf44c56b6ffe\",\"name\":\"Neha Verma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"0a4088e3-93a5-48c6-af55-df32b5ba7859\",\"name\":\"Pooja Kumari\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"6e616637-24b1-492a-960b-775790678849\",\"name\":\"Priya Sharma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"acbc609e-221f-4002-a3a1-45f17c652ed9\",\"name\":\"Anil Kumar\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"8f23c2a4-c547-47fe-bf1f-61f1457ff386\",\"name\":\"Bhavna Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"9dc0cf86-b51f-490a-bd8a-dd362984f7c2\",\"name\":\"Nitin Patel\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"8050646f-8fd4-46e2-9602-6330f7507672\",\"name\":\"Sanjay Verma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"4aae6bfb-550b-4c1b-b63e-25ed78752f68\",\"name\":\"Rohit Sharma\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"a0a2a306-e2c3-4ebf-8153-b30bd2528342\",\"name\":\"Dinesh Kumar\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"265c0a8d-deb6-4e27-a6ae-3c93a77b7c11\",\"name\":\"Sachin Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"c98da7cc-068a-469e-b0d1-b4d747fc1c97\",\"name\":\"Amit Patel\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"2909f4ad-0e8b-4d44-a7d1-2b0b4cedd724\",\"name\":\"Vishal Reddy\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":0,\"efficiency\":0.0},{\"id\":\"f4afdfd4-ac38-4166-98a1-0e5d000dc5e2\",\"name\":\"Suresh Singh\",\"active\":true,\"current_load\":0,\"max_load\":10,\"resolved_total\":1,\"efficiency\":1.0}]"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/admin/workers/performance"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520716145,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/issues?state=reported - ",
+    "groupId": "Group_q7ta2",
+    "id": "Response_oji52",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/issues?state=reported",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "awrbn",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"items\":[],\"total\":0,\"page\":1,\"page_size\":20}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/issues?state=reported"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520917698,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e - ",
+    "groupId": "Group_41kvv",
+    "id": "Response_x7spt",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "bx4oi",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"items\":[{\"id\":\"5d27a545-f176-4172-a029-b2674dd77bfe\",\"description\":\"Garbage near market road\",\"latitude\":31.48162825,\"longitude\":76.19001046,\"state\":\"resolved\",\"priority\":3,\"priority_reason\":null,\"category\":\"Littering/Garbage on Public Places\",\"confidence\":0.95,\"detections_count\":null,\"image_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/dc4446d2c719424ab40e14f1d727f375.jpg\"],\"annotated_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/annotated_dc4446d2c719424ab40e14f1d727f375.jpg\"],\"proof_image_url\":null,\"validation_source\":\"auto\",\"is_duplicate\":false,\"parent_issue_id\":null,\"nearby_count\":null,\"city\":null,\"locality\":null,\"full_address\":\"Indian Institute of Information Technology, Una, NH503A, Una, Himachal Pradesh, 177209, India\",\"geo_status\":\"Unique Location\",\"department\":null,\"assigned_member\":null,\"sla_hours\":24,\"sla_deadline\":\"2026-02-08T23:15:39.613746\",\"agent_flow\":[],\"created_at\":\"2026-02-07T23:15:13.051735\",\"updated_at\":\"2026-02-07T23:19:33.108260\"}],\"total\":1,\"page\":1,\"page_size\":20}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520917698,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe - ",
+    "groupId": "Group_41kvv",
+    "id": "Response_gdd79",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "erymf",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"id\":\"5d27a545-f176-4172-a029-b2674dd77bfe\",\"description\":\"Garbage near market road\",\"latitude\":31.48162825,\"longitude\":76.19001046,\"state\":\"resolved\",\"priority\":3,\"priority_reason\":null,\"category\":\"Littering/Garbage on Public Places\",\"confidence\":0.95,\"detections_count\":null,\"image_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/dc4446d2c719424ab40e14f1d727f375.jpg\"],\"annotated_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/annotated_dc4446d2c719424ab40e14f1d727f375.jpg\"],\"proof_image_url\":null,\"validation_source\":\"auto\",\"is_duplicate\":false,\"parent_issue_id\":null,\"nearby_count\":null,\"city\":null,\"locality\":null,\"full_address\":\"Indian Institute of Information Technology, Una, NH503A, Una, Himachal Pradesh, 177209, India\",\"geo_status\":\"Unique Location\",\"department\":null,\"assigned_member\":null,\"sla_hours\":24,\"sla_deadline\":\"2026-02-08T23:15:39.613746\",\"agent_flow\":[],\"created_at\":\"2026-02-07T23:15:13.051735\",\"updated_at\":\"2026-02-07T23:19:33.108260\"}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770521018834,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e - ",
+    "groupId": "Group_hznj6",
+    "id": "Response_aqu5a",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "5llzz",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"items\":[{\"id\":\"5d27a545-f176-4172-a029-b2674dd77bfe\",\"description\":\"Garbage near market road\",\"latitude\":31.48162825,\"longitude\":76.19001046,\"state\":\"resolved\",\"priority\":3,\"priority_reason\":null,\"category\":\"Littering/Garbage on Public Places\",\"confidence\":0.95,\"detections_count\":null,\"image_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/dc4446d2c719424ab40e14f1d727f375.jpg\"],\"annotated_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/annotated_dc4446d2c719424ab40e14f1d727f375.jpg\"],\"proof_image_url\":null,\"validation_source\":\"auto\",\"is_duplicate\":false,\"parent_issue_id\":null,\"nearby_count\":null,\"city\":null,\"locality\":null,\"full_address\":\"Indian Institute of Information Technology, Una, NH503A, Una, Himachal Pradesh, 177209, India\",\"geo_status\":\"Unique Location\",\"department\":null,\"assigned_member\":null,\"sla_hours\":24,\"sla_deadline\":\"2026-02-08T23:15:39.613746\",\"agent_flow\":[],\"created_at\":\"2026-02-07T23:15:13.051735\",\"updated_at\":\"2026-02-07T23:19:33.108260\"}],\"total\":1,\"page\":1,\"page_size\":20}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/issues?user_id=494fd93f-9252-45b6-961e-8560bb97130e"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770521018835,
+    "currentOwner": "browserstack-10650459",
+    "description": "Mock response for https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe - ",
+    "groupId": "Group_hznj6",
+    "id": "Response_gqjey",
+    "isSample": false,
+    "name": " https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe",
+    "objectType": "rule",
+    "pairs": [
+      {
+        "id": "iifop",
+        "response": {
+          "resourceType": "restApi",
+          "serveWithoutRequest": true,
+          "statusCode": 200,
+          "type": "static",
+          "value": "{\"id\":\"5d27a545-f176-4172-a029-b2674dd77bfe\",\"description\":\"Garbage near market road\",\"latitude\":31.48162825,\"longitude\":76.19001046,\"state\":\"resolved\",\"priority\":3,\"priority_reason\":null,\"category\":\"Littering/Garbage on Public Places\",\"confidence\":0.95,\"detections_count\":null,\"image_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/dc4446d2c719424ab40e14f1d727f375.jpg\"],\"annotated_urls\":[\"https://mqjshnnpnwrwkqxmgysh.supabase.co/storage/v1/object/public/Data/5d27a545-f176-4172-a029-b2674dd77bfe/annotated_dc4446d2c719424ab40e14f1d727f375.jpg\"],\"proof_image_url\":null,\"validation_source\":\"auto\",\"is_duplicate\":false,\"parent_issue_id\":null,\"nearby_count\":null,\"city\":null,\"locality\":null,\"full_address\":\"Indian Institute of Information Technology, Una, NH503A, Una, Himachal Pradesh, 177209, India\",\"geo_status\":\"Unique Location\",\"department\":null,\"assigned_member\":null,\"sla_hours\":24,\"sla_deadline\":\"2026-02-08T23:15:39.613746\",\"agent_flow\":[],\"created_at\":\"2026-02-07T23:15:13.051735\",\"updated_at\":\"2026-02-07T23:19:33.108260\"}"
+        },
+        "source": {
+          "key": "Url",
+          "operator": "Equals",
+          "value": "https://0xarchit-citytrack.hf.space/issues/5d27a545-f176-4172-a029-b2674dd77bfe"
+        }
+      }
+    ],
+    "ruleType": "Response",
+    "schemaVersion": "3.0.0",
+    "status": "Inactive"
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520715803,
+    "currentOwner": "browserstack-10650459",
+    "description": "",
+    "id": "Group_q7ta2",
+    "modificationDate": 1770520715803,
+    "name": "[Mocks] city-track-admin.har",
+    "objectType": "group",
+    "sessionId": "776c1957-f347-46d1-9294-b75ef397a675",
+    "isFavourite": false,
+    "status": "Active",
+    "children": []
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770520917345,
+    "currentOwner": "browserstack-10650459",
+    "description": "",
+    "id": "Group_41kvv",
+    "modificationDate": 1770520917345,
+    "name": "[Mocks] city-track-user.har",
+    "objectType": "group",
+    "sessionId": "432e9e8d-0c70-471f-aafe-21cc18ea407d",
+    "isFavourite": false,
+    "status": "Active",
+    "children": []
+  },
+  {
+    "createdFromSession": true,
+    "creationDate": 1770521018446,
+    "currentOwner": "browserstack-10650459",
+    "description": "",
+    "id": "Group_hznj6",
+    "modificationDate": 1770521018446,
+    "name": "[Mocks] city-track-user.har",
+    "objectType": "group",
+    "sessionId": "fb9845c4-3c27-4df6-9b7d-2fce30eb0c1b",
+    "isFavourite": false,
+    "status": "Active",
+    "children": []
+  }
+]
