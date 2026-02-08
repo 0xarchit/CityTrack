@@ -38,6 +38,13 @@ class Settings(BaseSettings):
     api_host: str = "0.0.0.0"
     api_port: int = 8000
     api_workers: int = 4
+
+    db_pool_size: int = 5
+    db_max_overflow: int = 5
+    db_pool_timeout: int = 30
+    db_pool_recycle: int = 1800
+    db_statement_cache_size: int = 0
+    db_prepared_statement_cache_size: int = 0
     
     max_upload_size_mb: int = 10
     allowed_extensions: set[str] = {"jpg", "jpeg", "png", "webp"}

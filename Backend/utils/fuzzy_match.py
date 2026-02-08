@@ -28,7 +28,7 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
     ],
     "Vandalism Issues": [
         "vandal", "graffiti", "spray", "paint", "defaced",
-        "smashed", "destroyed", "damaged property", "torn"
+        "smashed", "destroyed", "torn"
     ],
     "Dead Animal Pollution": [
         "dead", "animal", "carcass", "body", "corpse", "rotting", "smell",
@@ -36,7 +36,7 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
     ],
     "Damaged Concrete Structures": [
         "concrete", "structure", "wall", "pillar", "bridge", "flyover",
-        "footpath", "sidewalk", "curb", "crack", "broken"
+        "footpath", "sidewalk", "curb", "crack", "broken", "Damaged Concrete"
     ],
     "Damaged Electric Wires and Poles": [
         "electric", "wire", "pole", "cable", "power", "electricity",

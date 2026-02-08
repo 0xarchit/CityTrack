@@ -168,7 +168,7 @@ class VisionAgent(BaseAgent):
         gemini_category = None
         gemini_confidence = 0.0
         gemini_reasoning = None
-        if self.gemini_model and (not detections or max(d.confidence for d in detections) < 0.5):
+        if self.gemini_model and detections and max(d.confidence for d in detections) < 0.5:
             gemini_category, gemini_confidence, gemini_reasoning = await self.gemini_classify_image(
                 image_data=image_data,
                 description=description
